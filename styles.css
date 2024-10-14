@@ -233,7 +233,7 @@ animation-delay: 0.8s;
   .orbiter-group {
     position: absolute;
     top: 30%;
-    left: 40%;
+    left: 50%;
     width: 146px;
     height: 64px;
     transform-origin: center center;
