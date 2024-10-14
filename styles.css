@@ -34,6 +34,7 @@
 
 
 body {
+    background-color: rgba(35,47,62,.5);
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
@@ -167,158 +168,6 @@ footer {
 *  crowding the header.
 */
 
-/* AirWolf Standard Stripes */
-.airwolf-header-stripe-shine {
-    position: absolute;
-    content: '';
-    background: white;
-    width: 100%;
-    height: 20px;
-    transform: rotate(-70deg);
-
-    animation-duration: 6s;
-    animation-name: shine;
-    animation-iteration-count: infinite;
-}
-.airwolf-header-stripe-shine.two {
-    height: 10px;
-    animation-duration: 3s;
-}
-
-.airwolf-header-stripe-fade {
-    display: block;
-    width: 1500px;
-    height: 50px;
-    background: rgb(1, 125, 186);
-
-    margin-left: -100px;
-    margin-top: -75px;
-
-    transform: rotate(-20deg);
-    animation-duration: 6s;
-    animation-name: fadeInOut;
-    animation-iteration-count: infinite;
-
-
-}
-.airwolf-header-stripe-fade.one {
-    background: rgb(0, 138, 205);
-    margin-bottom: 10px;
-    animation-duration: 6s;
-}
-.airwolf-header-stripe-fade.two {
-    background: rgb(1, 125, 186);
-    margin-bottom: 75px;
-    animation-duration: 17s;
-}
-.airwolf-header-stripe-fade.three {
-    background: rgb(1, 125, 186);
-    margin-bottom: 10px;
-    animation-duration: 7s;
-}
-.airwolf-header-stripe-fade.four {
-    animation-name: fadeInOutDark;
-    background: rgb(35,47,62);
-    margin-bottom: 30px;
-    animation-duration: 9s;
-}
-.airwolf-header-stripe-fade.five {
-    background: rgb(0, 138, 205);
-    margin-bottom: 150px;
-    animation-duration: 13s;
-}
-
-@keyframes shine {
-    0% {
-        transform: rotate(-90deg);
-        left: -100%;
-        background: rgba(255,255,255,0);
-    }
-
-    15% {
-        transform: rotate(-70deg);
-    }
-
-    25% {
-        left: 50%;
-        background: rgba(255,255,255,0.05);
-    }
-
-    100% {
-        transform: rotate(-90deg);
-        left: 150%;
-        background: rgba(255,255,255,0);
-    }
-}
-
-
-/* Timeline Stripes */
-/* Stolen from /ZRH/Templates/Header/WebHome/ZRH-Template-V2-Calm.css */
-
-.airwolf-header-timeline-left {
-    background: rgb(1, 125, 186);
-    position: absolute;
-    height: 3px;
-
-    -webkit-animation: mymoveleft 8s infinite ease-in; 
-    animation: mymoveleft 8s infinite ease-in;
-}
-.airwolf-header-timeline-left.one {
-    width: 8%;
-    top: 15%;
-    left: 36%;
-    opacity: 0;
-    animation-delay: 1s;
-}
-.airwolf-header-timeline-left.two {
-    width: 9%;
-    top: 50%;
-    left: 30%;
-}
-.airwolf-header-timeline-left.three {
-    width: 7%;
-    top: 70%;
-    left: 27%;
-    opacity: 0;
-    animation-delay: 2s;
-}
-.airwolf-header-timeline-left.four {
-    width: 4%;
-    top: 60%;
-    left: 30%;
-    opacity: 0;
-    animation-delay: 5s;
-}
-.airwolf-header-timeline-left.five {
-    width: 14%;
-    top: 45%;
-    left: 24%;
-    opacity: 0;
-    animation-delay: 7s;
-}
-.airwolf-header-timeline-left.six {
-    width: 6%;
-    top: 50%;
-    left: 25%;
-    opacity: 0;
-    animation-delay: 3s;
-}
-
-/* Standard syntax */
-@keyframes mymoveleft {
-    from {left: 0% !important}
-    to {left: 82%;}
-    0%, 100% {
-        opacity: 0;
-    }
-
-    70% {
-        opacity: 0.9;
-    }
-}
-
-
-
 /* Wave Dots */
 
 .airwolf-header-dot {
@@ -375,10 +224,11 @@ animation-delay: 0.8s;
     initial-value: 0deg;
   }
   
+  /* updated positioning to match cube */ 
   .orbiter-group {
     position: absolute;
-    bottom: 35.2%;
-    left: 1.55%;
+    bottom: 50%;
+    left: 50%;
     width: 146px;
     height: 64px;
     
