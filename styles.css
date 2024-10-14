@@ -41,6 +41,32 @@ body {
     padding: 0;
 }
 
+
+/* Header Wrapper */
+@keyframes wrapperGlow {
+  from {
+    box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.6),
+                0 0 4px 2px rgba(255, 255, 255, 0.4),
+                0 0 7px 3px rgba(255, 255, 255, 0.2),
+                0 0 10px 4px rgba(255, 255, 255, 0.1);
+  }
+  to {
+    box-shadow: 0 0 3px 1.5px rgba(255, 255, 255, 0.7),
+                0 0 6px 3px rgba(255, 255, 255, 0.5),
+                0 0 9px 4.5px rgba(255, 255, 255, 0.3),
+                0 0 12px 6px rgba(255, 255, 255, 0.2);
+  }
+}
+
+.airwolf-wrapper {
+  background-color: rgb(35,47,62);
+  border-radius: 10px;
+  width: 95%;
+  overflow: hidden;
+  position: relative;
+  animation: wrapperGlow 2s ease-in-out infinite alternate;
+}
+
 /* HEADER */
 .airwolf-header {
   display: flex;                   /* Enable Flexbox */
@@ -50,7 +76,7 @@ body {
   margin: 0 auto;
   background-color: rgb(35, 47, 62);
   position: relative;
-  width: 95%;
+  width: 100%;
   height: 170px;
   overflow: hidden;
 }
@@ -80,6 +106,7 @@ body {
     font-size: 40px;
     line-height: 1.4;
     font-weight: 700;
+    text-align: center;
 }
 .airwolf-header-title::after {
     z-index: 2;
@@ -101,46 +128,32 @@ body {
     font-size: 20px;
     line-height: 1.4;
     font-weight: 700;
+    text-align: center;
 }
 
-/* Header Wrapper */
-@keyframes wrapperGlow {
-    from {
-      box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.6),
-                  0 0 4px 2px rgba(255, 255, 255, 0.4),
-                  0 0 7px 3px rgba(255, 255, 255, 0.2),
-                  0 0 10px 4px rgba(255, 255, 255, 0.1);
-    }
-    to {
-      box-shadow: 0 0 3px 1.5px rgba(255, 255, 255, 0.7),
-                  0 0 6px 3px rgba(255, 255, 255, 0.5),
-                  0 0 9px 4.5px rgba(255, 255, 255, 0.3),
-                  0 0 12px 6px rgba(255, 255, 255, 0.2);
-    }
-  }
-  
-  .airwolf-wrapper {
-    background-color: rgb(35,47,62);
-    border-radius: 10px;
-    width: 95%;
-    overflow: hidden;
-    position: relative;
-    animation: wrapperGlow 2s ease-in-out infinite alternate;
-  }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
+/* NAVIGATION */
+nav {
+  display: flex;       
+  justify-content: center;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 10px;
+.nav-list {
+  list-style-type: none;
+  padding: 0;
 }
 
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
+.nav-list li {
+  margin-right: 10px;           
+}
+
+.nav-list li:last-child {
+  margin-right: 0;
+}
+
+.nav-list li a {
+  color: #fff;
+  text-decoration: none;
 }
 
 main {
