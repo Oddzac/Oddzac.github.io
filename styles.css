@@ -227,8 +227,8 @@ animation-delay: 0.8s;
   /* updated positioning to match cube */ 
   .orbiter-group {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 25%;
+    left: 25%;
     width: 146px;
     height: 64px;
     transform-origin: center center;
