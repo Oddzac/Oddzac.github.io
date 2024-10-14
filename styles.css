@@ -34,7 +34,7 @@
 
 
 body {
-    background-color: rgba(35,47,62,.5);
+    background-color: rgb(22,25,31);
     font-family: Arial, sans-serif;
     line-height: 1.6;
     margin: 0;
@@ -246,8 +246,6 @@ animation-delay: 0.8s;
   /* updated positioning to match cube */ 
   .orbiter-group {
     position: absolute;
-    /*top: 30%;
-    left: 45%;*/
     width: 146px;
     height: 64px;
     transform-origin: center center;
