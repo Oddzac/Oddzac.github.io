@@ -237,6 +237,7 @@ animation-delay: 0.8s;
     width: 146px;
     height: 64px;
     transform-origin: center center;
+    transform: translateX(-50%);
     opacity: 0;
     }
 
