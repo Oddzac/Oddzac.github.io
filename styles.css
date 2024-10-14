@@ -254,6 +254,10 @@ animation-delay: 0.8s;
     opacity: 0;
     }
 
+  .orbiter-group.hover-state {
+    animation: none;
+  }
+
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

@@ -60,18 +60,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     orbiters.forEach(orbiter => {
-        orbiter.style.transition = `--y-amplitude ${transitionDuration} ease`;
+        orbiter.style.transition = `transform ${transitionDuration} ease`;
     });
-
+    
     function changeOrbiterProperties(height, amplitude, opacity) {
         orbiterGroups.forEach(group => {
             group.style.height = height;
             group.style.opacity = opacity;
-            group.style.animationPlayState = opacity === '1' ? 'paused' : 'running';
+            group.classList.toggle('hover-state', opacity === '1');
         });
-
+    
         orbiters.forEach(orbiter => {
             orbiter.style.setProperty('--y-amplitude', amplitude);
+            orbiter.style.transform = `translate(var(--x), ${amplitude})`;
         });
     }
 
@@ -80,6 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     cube.addEventListener('mouseleave', function() {
-        changeOrbiterProperties(originalHeight, originalAmplitude, '');
+        changeOrbiterProperties(originalHeight, originalAmplitude, '0');
     });
 });
