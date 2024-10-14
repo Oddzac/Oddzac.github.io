@@ -1,3 +1,38 @@
+:root {
+    --awsui-grey-100: rgb(250,250,250); /* Oxygen */
+    --awsui-grey-200: rgb(234,237,237); /* Chromium */
+    --awsui-grey-300: rgb(213,219,219); /* Zinc */
+    --awsui-grey-400: rgb(170,183,184); /* Silver */
+    --awsui-grey-500: rgb(134,149,150); /* Platinum */
+    --awsui-grey-600: rgb(84,91,100);   /* Mercury */
+    --awsui-grey-900: rgb(22,25,31);    /* Lead */
+
+    --awsui-orange-500: rgb(1, 125, 186); /* Copper */
+    --awsui-orange-600: rgb(235,95,7); /* Bromine */
+
+    --awsui-blue-500: rgb(0,161,201); /* Argon */
+    --awsui-blue-600: rgb(0,125,188); /* Cobalt */
+
+    --awsui-green-500: rgb(106,175,53); /* Fluorine */
+    --awsui-green-600: rgb(30,137,0); /* Phosphorous */
+
+    --awsui-squid-ink: rgb(35,47,62); /* Squid Ink */
+    --awsui-squid-ink-transparent: rgba(35,47,62,.5); /* Squid Ink half opacity */
+
+    --awsui-amazon-orange: rgb(255,153,0); /* Amazon Orange */
+    --awsui-amazon-orange-transparent: rgb(255,153,0,0.5); /* Amazon Orange */
+
+    --awsui-amazon-orange: rgb(0, 138, 205); /* Kindle Blue */
+    --awsui-amazon-orange-transparent: rgb(0, 138, 205,0.5); /* Kindle Blue */
+
+    --base-type: var(--awsui-grey-200);
+    --base-header: var(--awsui-grey-100);
+    --base-inverted: var(--awsui-grey-900);
+}
+
+
+
+
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
@@ -5,11 +40,86 @@ body {
     padding: 0;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem;
+/* HEADER */
+.airwolf-header {
+    margin: 0 auto;
+    background-color: rgb(35,47,62);
+    position: relative;
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
 }
+.airwolf-header::after {
+    z-index: 1;
+    box-shadow: 0 0 240px 240px rgba(0,0,0,.5);
+    content: '';
+    background: red;
+    width: 340px;
+    height: 340px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+.airwolf-header-title {
+    z-index: 2;
+    font-family: "Amazon Ember", Helvetica, Arial, sans-serif;
+    letter-spacing: 2px;
+    position: absolute;
+    color: rgb(250,250,250);
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+.airwolf-header-title::after {
+    z-index: 2;
+    display: block;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: rgb(0, 138, 205);
+}
+.airwolf-header-subtitle {
+    z-index: 2;
+    font-family: "Amazon Ember", Helvetica, Arial, sans-serif;
+    letter-spacing: 2px;
+    position: absolute;
+    color: rgb(250,250,250);
+    top: 99px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+}
+
+/* Header Wrapper */
+@keyframes wrapperGlow {
+    from {
+      box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.6),
+                  0 0 4px 2px rgba(255, 255, 255, 0.4),
+                  0 0 7px 3px rgba(255, 255, 255, 0.2),
+                  0 0 10px 4px rgba(255, 255, 255, 0.1);
+    }
+    to {
+      box-shadow: 0 0 3px 1.5px rgba(255, 255, 255, 0.7),
+                  0 0 6px 3px rgba(255, 255, 255, 0.5),
+                  0 0 9px 4.5px rgba(255, 255, 255, 0.3),
+                  0 0 12px 6px rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  .airwolf-wrapper {
+    background-color: rgb(35,47,62);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    animation: wrapperGlow 2s ease-in-out infinite alternate;
+  }
 
 nav ul {
     list-style-type: none;
@@ -47,3 +157,409 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
+/* ANIMATIONS */
+
+/* Using all of these can get a little busy
+*  definitely recommend just picking one or
+*  two sets and rolling with those to avoid
+*  crowding the header.
+*/
+
+/* AirWolf Standard Stripes */
+.airwolf-header-stripe-shine {
+    position: absolute;
+    content: '';
+    background: white;
+    width: 100%;
+    height: 20px;
+    transform: rotate(-70deg);
+
+    animation-duration: 6s;
+    animation-name: shine;
+    animation-iteration-count: infinite;
+}
+.airwolf-header-stripe-shine.two {
+    height: 10px;
+    animation-duration: 3s;
+}
+
+.airwolf-header-stripe-fade {
+    display: block;
+    width: 1500px;
+    height: 50px;
+    background: rgb(1, 125, 186);
+
+    margin-left: -100px;
+    margin-top: -75px;
+
+    transform: rotate(-20deg);
+    animation-duration: 6s;
+    animation-name: fadeInOut;
+    animation-iteration-count: infinite;
+
+
+}
+.airwolf-header-stripe-fade.one {
+    background: rgb(0, 138, 205);
+    margin-bottom: 10px;
+    animation-duration: 6s;
+}
+.airwolf-header-stripe-fade.two {
+    background: rgb(1, 125, 186);
+    margin-bottom: 75px;
+    animation-duration: 17s;
+}
+.airwolf-header-stripe-fade.three {
+    background: rgb(1, 125, 186);
+    margin-bottom: 10px;
+    animation-duration: 7s;
+}
+.airwolf-header-stripe-fade.four {
+    animation-name: fadeInOutDark;
+    background: rgb(35,47,62);
+    margin-bottom: 30px;
+    animation-duration: 9s;
+}
+.airwolf-header-stripe-fade.five {
+    background: rgb(0, 138, 205);
+    margin-bottom: 150px;
+    animation-duration: 13s;
+}
+
+@keyframes shine {
+    0% {
+        transform: rotate(-90deg);
+        left: -100%;
+        background: rgba(255,255,255,0);
+    }
+
+    15% {
+        transform: rotate(-70deg);
+    }
+
+    25% {
+        left: 50%;
+        background: rgba(255,255,255,0.05);
+    }
+
+    100% {
+        transform: rotate(-90deg);
+        left: 150%;
+        background: rgba(255,255,255,0);
+    }
+}
+
+
+/* Timeline Stripes */
+/* Stolen from /ZRH/Templates/Header/WebHome/ZRH-Template-V2-Calm.css */
+
+.airwolf-header-timeline-left {
+    background: rgb(1, 125, 186);
+    position: absolute;
+    height: 3px;
+
+    -webkit-animation: mymoveleft 8s infinite ease-in; 
+    animation: mymoveleft 8s infinite ease-in;
+}
+.airwolf-header-timeline-left.one {
+    width: 8%;
+    top: 15%;
+    left: 36%;
+    opacity: 0;
+    animation-delay: 1s;
+}
+.airwolf-header-timeline-left.two {
+    width: 9%;
+    top: 50%;
+    left: 30%;
+}
+.airwolf-header-timeline-left.three {
+    width: 7%;
+    top: 70%;
+    left: 27%;
+    opacity: 0;
+    animation-delay: 2s;
+}
+.airwolf-header-timeline-left.four {
+    width: 4%;
+    top: 60%;
+    left: 30%;
+    opacity: 0;
+    animation-delay: 5s;
+}
+.airwolf-header-timeline-left.five {
+    width: 14%;
+    top: 45%;
+    left: 24%;
+    opacity: 0;
+    animation-delay: 7s;
+}
+.airwolf-header-timeline-left.six {
+    width: 6%;
+    top: 50%;
+    left: 25%;
+    opacity: 0;
+    animation-delay: 3s;
+}
+
+/* Standard syntax */
+@keyframes mymoveleft {
+    from {left: 0% !important}
+    to {left: 82%;}
+    0%, 100% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 0.9;
+    }
+}
+
+
+
+/* Wave Dots */
+
+.airwolf-header-dot {
+position: absolute;
+bottom: 40%; /* Vertical Positioning */
+width: 5px;
+height: 5px;
+border-radius: 50%;
+background-color: #3498db;
+animation: waveMotion 2s ease-in-out infinite;
+}
+
+.airwolf-header-dot.one {
+left: calc(50% - 30px);
+animation-delay: 0s;
+}
+
+.airwolf-header-dot.two {
+left: calc(50% - 15px);
+animation-delay: 0.2s;
+}
+
+.airwolf-header-dot.middle {
+left: 50%; /* Center dot */
+transform: translateX(-50%);
+animation-delay: 0.4s;
+}
+
+.airwolf-header-dot.three {
+left: calc(50% + 15px);
+animation-delay: 0.6s;
+}
+
+.airwolf-header-dot.four {
+left: calc(50% + 30px);
+animation-delay: 0.8s;
+}
+
+@keyframes waveMotion {
+0%, 100% {
+    transform: translateY(0);
+}
+50% {
+    transform: translateY(-15px);
+}
+}
+
+
+/* X-Orbiters */
+
+@property --angle {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+  }
+  
+  .orbiter-group {
+    position: absolute;
+    bottom: 35.2%;
+    left: 1.55%;
+    width: 146px;
+    height: 64px;
+    
+    opacity: 0; /* Start fully transparent */
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .orbiter-group.one {
+    transform: rotate(225deg);
+    animation: fadeInOut 3s ease-out infinite;
+  }
+  
+  .orbiter-group.two {
+    transform: rotate(-45deg);
+    animation: fadeInOut 5s ease-out infinite;
+  }
+
+  .orbiter-group.three {
+    transform: rotate(-225deg);
+    animation: fadeInOut 3.5s ease-out infinite;
+  }
+
+  .orbiter-group.four {
+    transform: rotate(45deg);
+    animation: fadeInOut 5.5s ease-out infinite;
+  }
+  
+  .airwolf-header-orbiter {
+    --x-amplitude: 72px;
+    --y-amplitude: 32px;
+    --x: calc(cos(var(--angle)) * var(--x-amplitude));
+    --y: calc(sin(var(--angle)) * var(--y-amplitude));
+    --opacity: 1;
+    --bg-color: #3498db;
+    --size: 5px;
+    --rotation: 0deg;
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    opacity: var(--opacity);
+    transform: translate(var(--x), var(--y)) rotate(var(--rotation));
+    animation: revolve 5s linear infinite;
+  }
+  
+  .airwolf-header-orbiter.tail {
+    --bg-color: white;
+  }
+    
+  .airwolf-header-orbiter.tail.zero {
+    --bg-color: #3498db;
+    --size: 4px;
+    box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.9),
+                0 0 4px 2px rgba(255, 255, 255, 0.7),
+                0 0 7px 3px rgba(255, 255, 255, 0.5),
+                0 0 10px 4px rgba(255, 255, 255, 0.3);
+    animation: revolve 5s linear infinite, glow 5s ease-in-out infinite alternate;
+  }
+  
+  .airwolf-header-orbiter.tail.one {
+    --size: 3px;
+    --opacity: 0.75;
+  }
+  
+  .airwolf-header-orbiter.tail.two {
+    --size: 2px;
+    --opacity: 0.5;
+  }
+  
+  .airwolf-header-orbiter.tail.three {
+    --size: 1px;
+    --opacity: 0.25;
+  }
+  
+  .orbiter-group.one .airwolf-header-orbiter.tail.zero { --delay: 0s; }
+  .orbiter-group.one .airwolf-header-orbiter.tail.one { --delay: 0.2s; }
+  .orbiter-group.one .airwolf-header-orbiter.tail.two { --delay: 0.4s; }
+  .orbiter-group.one .airwolf-header-orbiter.tail.three { --delay: 0.6s; }
+  
+  .orbiter-group.two .airwolf-header-orbiter.tail.zero { --delay: 0s; }
+  .orbiter-group.two .airwolf-header-orbiter.tail.one { --delay: 0.2s; }
+  .orbiter-group.two .airwolf-header-orbiter.tail.two { --delay: 0.4s; }
+  .orbiter-group.two .airwolf-header-orbiter.tail.three { --delay: 0.6s; }
+
+  .orbiter-group.three .airwolf-header-orbiter.tail.zero { --delay: 0s; }
+  .orbiter-group.three .airwolf-header-orbiter.tail.one { --delay: 0.2s; }
+  .orbiter-group.three .airwolf-header-orbiter.tail.two { --delay: 0.4s; }
+  .orbiter-group.three .airwolf-header-orbiter.tail.three { --delay: 0.6s; }
+
+  .orbiter-group.four .airwolf-header-orbiter.tail.zero { --delay: 0s; }
+  .orbiter-group.four .airwolf-header-orbiter.tail.one { --delay: 0.2s; }
+  .orbiter-group.four .airwolf-header-orbiter.tail.two { --delay: 0.4s; }
+  .orbiter-group.four .airwolf-header-orbiter.tail.three { --delay: 0.6s; }
+  
+  .airwolf-header-orbiter {
+    animation-delay: var(--delay);
+  }
+  
+  @keyframes revolve {
+    from { --angle: 0deg; }
+    to { --angle: 360deg; }
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.6),
+                  0 0 4px 2px rgba(255, 255, 255, 0.4),
+                  0 0 7px 3px rgba(255, 255, 255, 0.2),
+                  0 0 10px 4px rgba(255, 255, 255, 0.1);
+    }
+    to {
+      box-shadow: 0 0 3px 1.5px rgba(255, 255, 255, 0.7),
+                  0 0 6px 3px rgba(255, 255, 255, 0.5),
+                  0 0 9px 4.5px rgba(255, 255, 255, 0.3),
+                  0 0 12px 6px rgba(255, 255, 255, 0.2);
+    }
+  }
+
+
+
+
+/* The Box */
+.airwolf-header-cube {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 44.5%;
+    left: 7.4%;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(-45deg);
+  }
+  
+  .airwolf-header-cube .face {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 1px solid white;
+    box-sizing: border-box;
+    opacity: 0;
+  }
+  
+  .airwolf-header-cube .front  { transform: translateZ(15px); }
+  .airwolf-header-cube .right  { transform: rotateY(90deg) translateZ(15px); }
+  .airwolf-header-cube .top    { transform: rotateX(90deg) translateZ(15px); }
+  
+  /* Hide these faces */
+  .airwolf-header-cube .back,
+  .airwolf-header-cube .left,
+  .airwolf-header-cube .bottom {
+    display: none;
+  }
+  
+  @keyframes fadeInCube {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes glowCube {
+    0% {
+      box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.3),
+                  0 0 4px 2px rgba(255, 255, 255, 0.2),
+                  0 0 6px 3px rgba(255, 255, 255, 0.1);
+    }
+    100% {
+      box-shadow: 0 0 3px 1.5px rgba(255, 255, 255, 0.4),
+                  0 0 6px 3px rgba(255, 255, 255, 0.3),
+                  0 0 9px 4.5px rgba(255, 255, 255, 0.2);
+    }
+  }
+  
+  .airwolf-header-cube .face {
+    animation: 
+      fadeInCube 1s ease-out forwards,
+      glowCube 2s ease-in-out infinite alternate;
+  }
