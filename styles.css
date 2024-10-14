@@ -232,7 +232,7 @@ animation-delay: 0.8s;
     width: 146px;
     height: 64px;
     transform-origin: center center;
-    transform: translate(-10%, -0%);
+    transform: translate(-0%, -0%);
     opacity: 0;
     }
 
