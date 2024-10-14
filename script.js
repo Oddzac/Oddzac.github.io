@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const hoverHeight = '146px';
     const originalAmplitude = '32px';
     const hoverAmplitude = '64px';
+    const transitionDuration = '0.3s';
 
 
 
@@ -53,11 +54,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
+    // Add transition properties to orbiter groups and orbiters
+    orbiterGroups.forEach(group => {
+        group.style.transition = `height ${transitionDuration} ease, opacity ${transitionDuration} ease`;
+    });
+
+    orbiters.forEach(orbiter => {
+        orbiter.style.transition = `--y-amplitude ${transitionDuration} ease`;
+    });
+
     function changeOrbiterProperties(height, amplitude, opacity) {
         orbiterGroups.forEach(group => {
             group.style.height = height;
             group.style.opacity = opacity;
-            // Pause or resume the fadeInOut animation
             group.style.animationPlayState = opacity === '1' ? 'paused' : 'running';
         });
 
