@@ -56,9 +56,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Add transition properties to orbiter groups
+    // Add transition properties to orbiter groups and orbiters
     orbiterGroups.forEach(group => {
         group.style.transition = `width ${transitionDuration} ease, height ${transitionDuration} ease, opacity ${transitionDuration} ease`;
+    });
+
+    orbiters.forEach(orbiter => {
+        orbiter.style.transition = `--x-amplitude ${transitionDuration} ease, --y-amplitude ${transitionDuration} ease`;
     });
 
     function changeOrbiterProperties(width, height, xAmplitude, yAmplitude, opacity) {
