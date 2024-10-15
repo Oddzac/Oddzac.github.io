@@ -4,11 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const orbiterGroups = document.querySelectorAll('.orbiter-group');
     const orbiters = document.querySelectorAll('.airwolf-header-orbiter');
 
+    const originalWidth = '146px';
     const originalHeight = '64px';
-    const hoverHeight = '146px';
-    const originalAmplitude = '32px';
-    const hoverAmplitude = '64px';
-    const transitionDuration = '0.3s';
+    const hoverSize = '146px';
+    const originalXAmplitude = '72px';
+    const originalYAmplitude = '32px';
+    const hoverAmplitude = '73px';
+    const transitionDuration = '0.5s';
 
 
 
@@ -56,31 +58,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add transition properties to orbiter groups and orbiters
     orbiterGroups.forEach(group => {
-        group.style.transition = `height ${transitionDuration} ease, opacity ${transitionDuration} ease`;
+        group.style.transition = `width ${transitionDuration} ease, height ${transitionDuration} ease, opacity ${transitionDuration} ease`;
     });
 
     orbiters.forEach(orbiter => {
         orbiter.style.transition = `transform ${transitionDuration} ease`;
     });
     
-    function changeOrbiterProperties(height, amplitude, opacity) {
+    function changeOrbiterProperties(width, height, xAmplitude, yAmplitude, opacity) {
         orbiterGroups.forEach(group => {
+            group.style.width = width;
             group.style.height = height;
             group.style.opacity = opacity;
             group.classList.toggle('hover-state', opacity === '1');
         });
     
         orbiters.forEach(orbiter => {
-            orbiter.style.setProperty('--y-amplitude', amplitude);
-            orbiter.style.transform = `translate(var(--x), ${amplitude})`;
+            orbiter.style.setProperty('--x-amplitude', xAmplitude);
+            orbiter.style.setProperty('--y-amplitude', yAmplitude);
+            orbiter.style.transform = `translate(var(--x-amplitude), var(--y-amplitude))`;
         });
     }
 
     cube.addEventListener('mouseenter', function() {
-        changeOrbiterProperties(hoverHeight, hoverAmplitude, '1');
+        changeOrbiterProperties(hoverSize, hoverSize, hoverAmplitude, hoverAmplitude, '1');
     });
 
     cube.addEventListener('mouseleave', function() {
-        changeOrbiterProperties(originalHeight, originalAmplitude, '0');
+        changeOrbiterProperties(originalWidth, originalHeight, originalXAmplitude, originalYAmplitude, '0');
     });
 });
