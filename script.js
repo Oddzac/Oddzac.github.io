@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const cube = document.querySelector('.airwolf-header-cube');
     const orbiterGroups = document.querySelectorAll('.orbiter-group');
-    const orbiters = document.querySelectorAll('.airwolf-header-orbiter');
 
     const originalWidth = '146px';
     const originalHeight = '64px';
@@ -10,9 +9,30 @@ document.addEventListener('DOMContentLoaded', function() {
     const originalXAmplitude = '72px';
     const originalYAmplitude = '32px';
     const hoverAmplitude = '73px';
-    const transitionDuration = '0.5s';
 
+    function changeOrbiterProperties(isHovered) {
+        orbiterGroups.forEach(group => {
+            if (isHovered) {
+                group.style.width = hoverSize;
+                group.style.height = hoverSize;
+                group.style.opacity = '1';
+                group.classList.add('hover-state');
+            } else {
+                group.style.width = originalWidth;
+                group.style.height = originalHeight;
+                group.style.opacity = '0';
+                group.classList.remove('hover-state');
+            }
+        });
+    }
 
+    cube.addEventListener('mouseenter', function() {
+        changeOrbiterProperties(true);
+    });
+
+    cube.addEventListener('mouseleave', function() {
+        changeOrbiterProperties(false);
+    });
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -56,34 +76,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Add transition properties to orbiter groups and orbiters
-    orbiterGroups.forEach(group => {
-        group.style.transition = `width ${transitionDuration} ease, height ${transitionDuration} ease, opacity ${transitionDuration} ease`;
-    });
 
-    orbiters.forEach(orbiter => {
-        orbiter.style.transition = `--x-amplitude ${transitionDuration} ease, --y-amplitude ${transitionDuration} ease`;
-    });
-
-    function changeOrbiterProperties(width, height, xAmplitude, yAmplitude, opacity) {
-        orbiterGroups.forEach(group => {
-            group.style.width = width;
-            group.style.height = height;
-            group.style.opacity = opacity;
-            group.classList.toggle('hover-state', opacity === '1');
-        });
-    
-        orbiters.forEach(orbiter => {
-            orbiter.style.setProperty('--x-amplitude', xAmplitude);
-            orbiter.style.setProperty('--y-amplitude', yAmplitude);
-        });
-    }
-
-    cube.addEventListener('mouseenter', function() {
-        changeOrbiterProperties(hoverSize, hoverSize, hoverAmplitude, hoverAmplitude, '1');
-    });
-
-    cube.addEventListener('mouseleave', function() {
-        changeOrbiterProperties(originalWidth, originalHeight, originalXAmplitude, originalYAmplitude, '0');
-    });
 });

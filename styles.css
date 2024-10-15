@@ -250,10 +250,35 @@ animation-delay: 0.8s;
     height: 64px;
     transform-origin: center center;
     opacity: 0;
+    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
     }
 
-  .orbiter-group.hover-state {
-    animation: none;
+  .orbiter-group.hover-state .airwolf-header-orbiter {
+    --x-amplitude: 73px;
+    --y-amplitude: 73px;
+  }
+
+  .airwolf-header-orbiter {
+    --x-amplitude: 72px;
+    --y-amplitude: 32px;
+    --x: calc(cos(var(--angle)) * var(--x-amplitude));
+    --y: calc(sin(var(--angle)) * var(--y-amplitude));
+    --opacity: 1;
+    --bg-color: #3498db;
+    --size: 5px;
+    --rotation: 0deg;
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background-color: var(--bg-color);
+    opacity: var(--opacity);
+    transform: translate(var(--x), var(--y)) rotate(var(--rotation));
+    animation: revolve 5s linear infinite;
+    transition: --x-amplitude 0.5s ease, --y-amplitude 0.5s ease;
   }
 
   @keyframes fadeIn {
@@ -287,27 +312,12 @@ animation-delay: 0.8s;
     animation: fadeInOut 5.5s ease-out infinite;
   }
   
-  .airwolf-header-orbiter {
-    --x-amplitude: 72px;
-    --y-amplitude: 32px;
-    --x: calc(cos(var(--angle)) * var(--x-amplitude));
-    --y: calc(sin(var(--angle)) * var(--y-amplitude));
-    --opacity: 1;
-    --bg-color: #3498db;
-    --size: 5px;
-    --rotation: 0deg;
-  
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: var(--size);
-    height: var(--size);
-    border-radius: 50%;
-    background-color: var(--bg-color);
-    opacity: var(--opacity);
-    transform: translate(var(--x), var(--y)) rotate(var(--rotation));
-    animation: revolve 5s linear infinite;
-  }
+
+
+.orbiter-group.hover-state .airwolf-header-orbiter {
+    --x-amplitude: 73px;
+    --y-amplitude: 73px;
+}
   
   .airwolf-header-orbiter.tail {
     --bg-color: white;
