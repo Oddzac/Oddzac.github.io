@@ -56,15 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Add transition properties to orbiter groups and orbiters
+    // Add transition properties to orbiter groups
     orbiterGroups.forEach(group => {
         group.style.transition = `width ${transitionDuration} ease, height ${transitionDuration} ease, opacity ${transitionDuration} ease`;
     });
 
-    orbiters.forEach(orbiter => {
-        orbiter.style.transition = `transform ${transitionDuration} ease`;
-    });
-    
     function changeOrbiterProperties(width, height, xAmplitude, yAmplitude, opacity) {
         orbiterGroups.forEach(group => {
             group.style.width = width;
@@ -76,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
         orbiters.forEach(orbiter => {
             orbiter.style.setProperty('--x-amplitude', xAmplitude);
             orbiter.style.setProperty('--y-amplitude', yAmplitude);
-            orbiter.style.transform = `translate(var(--x-amplitude), var(--y-amplitude))`;
         });
     }
 
