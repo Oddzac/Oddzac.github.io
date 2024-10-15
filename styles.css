@@ -67,6 +67,7 @@ body {
   animation: wrapperGlow 2s ease-in-out infinite alternate;
   margin-left: auto;
   margin-right: auto;
+  padding-top: 10px;
 }
 
 /* HEADER */
