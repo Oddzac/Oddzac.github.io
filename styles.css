@@ -32,6 +32,9 @@
   --glow-color-r: 255;
   --glow-color-g: 255;
   --glow-color-b: 255;
+
+  --default-height: 80px;
+  --default-width: 146px;
 }
 
 
@@ -242,6 +245,24 @@ animation-delay: 0.8s;
 
 /* X-Orbiters */
 
+.orbiter-cube-container {
+  width: 147px;
+  height: 147px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /*transform: translateY(-50%);*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.orbiter-cube-container:hover .orbiter-group {
+  --default-height: 146px; 
+  --default-width: 146px; 
+}
+
+
 @property --angle {
     syntax: '<angle>';
     inherits: true;
@@ -250,29 +271,24 @@ animation-delay: 0.8s;
   
   .orbiter-group {
     position: absolute;
-    width: 146px;
-    height: 80px;
+    width: var(--default-width);
+    height: var(--default-height);
     transform-origin: center center;
     opacity: 0;
-    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
-    }
+    transition: width 1s ease, height 1s ease, opacity 1s ease;
+}
+  
 
-  .orbiter-group.hover-state .airwolf-header-orbiter {
-    --x-amplitude: 73px;
-    --y-amplitude: 73px;
-    transition: 0.3s ease;
-  }
-
-  .airwolf-header-orbiter {
-    --x-amplitude: 73px;
-    --y-amplitude: 40px;
+.airwolf-header-orbiter {
+    --x-amplitude: calc(var(--default-width) / 2);
+    --y-amplitude: calc(var(--default-height) / 2);
     --x: calc(cos(var(--angle)) * var(--x-amplitude));
     --y: calc(sin(var(--angle)) * var(--y-amplitude));
     --opacity: 1;
     --bg-color: white;
     --size: 5px;
     --rotation: 0deg;
-  
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -283,8 +299,15 @@ animation-delay: 0.8s;
     opacity: var(--opacity);
     transform: translate(var(--x), var(--y)) rotate(var(--rotation));
     animation: revolve 5s linear infinite;
-    transition: --x-amplitude 0.5s ease, --y-amplitude 0.5s ease;
-  }
+    transition: transform 1s ease, background-color 0.3s ease;
+}
+
+.airwolf-header-orbiter.expanded {
+    transform: translate(
+        calc(cos(var(--angle)) * 73px),
+        calc(sin(var(--angle)) * 73px)
+    ) rotate(var(--rotation));
+}
 
   @keyframes fadeIn {
     from { opacity: 0; }

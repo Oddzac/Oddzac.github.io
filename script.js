@@ -4,29 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const orbiters = document.querySelectorAll('.airwolf-header-orbiter');
     const cubeFaces = document.querySelectorAll('.airwolf-header-cube .face');
 
-    function changeOrbiterProperties(isHovered) {
-        orbiterGroups.forEach(group => {
-            if (isHovered) {
-                group.style.width = '146px';
-                group.style.height = '146px';
-                group.style.opacity = '1';
-                group.classList.add('hover-state');
-            } else {
-                group.style.width = '146px';
-                group.style.height = '80px';
-                group.style.opacity = '0';
-                group.classList.remove('hover-state');
-            }
-        });
-    }
-
-    cube.addEventListener('mouseenter', function() {
-        changeOrbiterProperties(true);
-    });
-
-    cube.addEventListener('mouseleave', function() {
-        changeOrbiterProperties(false);
-    });
 
     // New click listener for the cube
     cube.addEventListener('click', function() {
@@ -49,7 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Change orbiter colors
         orbiters.forEach(orbiter => {
-            orbiter.style.setProperty('--bg-color', color);
+            // experimenting with constant as "always on"
+            //orbiter.style.setProperty('--bg-color', color);
             if (orbiter.classList.contains('tail') && orbiter.classList.contains('zero')) {
                 orbiter.style.boxShadow = `0 0 2px 1px ${color}E6,
                                            0 0 4px 2px ${color}B3,
