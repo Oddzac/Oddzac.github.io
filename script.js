@@ -4,20 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const orbiters = document.querySelectorAll('.airwolf-header-orbiter');
     const cubeFaces = document.querySelectorAll('.airwolf-header-cube .face');
 
-    const originalWidth = '146px';
-    const originalHeight = '64px';
-    const hoverSize = '146px';
-
     function changeOrbiterProperties(isHovered) {
         orbiterGroups.forEach(group => {
             if (isHovered) {
-                group.style.width = hoverSize;
-                group.style.height = hoverSize;
+                group.style.width = '146px';
+                group.style.height = '146px';
                 group.style.opacity = '1';
                 group.classList.add('hover-state');
             } else {
-                group.style.width = originalWidth;
-                group.style.height = originalHeight;
+                group.style.width = '146px';
+                group.style.height = '80px';
                 group.style.opacity = '0';
                 group.classList.remove('hover-state');
             }
@@ -40,23 +36,42 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to change colors of cube and orbiters
     function changeElementColors(color) {
+        // Convert hex to RGB
+        const rgb = hexToRgb(color);
+    
         // Change cube face colors
         cubeFaces.forEach(face => {
-            face.style.boxShadow = `0 0 3px 1.5px ${color}44,
-                                    0 0 6px 3px ${color}33,
-                                    0 0 9px 4.5px ${color}22`;
+            face.style.borderColor = color;
+            face.style.boxShadow = `0 0 3px 1.5px ${color}66,
+                                    0 0 6px 3px ${color}4D,
+                                    0 0 9px 4.5px ${color}33`;
         });
-
+    
         // Change orbiter colors
         orbiters.forEach(orbiter => {
+            orbiter.style.setProperty('--bg-color', color);
             if (orbiter.classList.contains('tail') && orbiter.classList.contains('zero')) {
                 orbiter.style.boxShadow = `0 0 2px 1px ${color}E6,
                                            0 0 4px 2px ${color}B3,
                                            0 0 7px 3px ${color}80,
                                            0 0 10px 4px ${color}4D`;
             }
-            orbiter.style.backgroundColor = color;
         });
+    
+        // Update CSS variables for glow animation
+        document.documentElement.style.setProperty('--glow-color-r', rgb.r);
+        document.documentElement.style.setProperty('--glow-color-g', rgb.g);
+        document.documentElement.style.setProperty('--glow-color-b', rgb.b);
+    }
+    
+    // Helper function to convert hex to RGB
+    function hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null;
     }
 
     // Helper function to generate random colors

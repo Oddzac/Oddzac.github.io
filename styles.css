@@ -1,33 +1,37 @@
 :root {
-    --awsui-grey-100: rgb(250,250,250); /* Oxygen */
-    --awsui-grey-200: rgb(234,237,237); /* Chromium */
-    --awsui-grey-300: rgb(213,219,219); /* Zinc */
-    --awsui-grey-400: rgb(170,183,184); /* Silver */
-    --awsui-grey-500: rgb(134,149,150); /* Platinum */
-    --awsui-grey-600: rgb(84,91,100);   /* Mercury */
-    --awsui-grey-900: rgb(22,25,31);    /* Lead */
+  --awsui-grey-100: rgb(250,250,250); /* Oxygen */
+  --awsui-grey-200: rgb(234,237,237); /* Chromium */
+  --awsui-grey-300: rgb(213,219,219); /* Zinc */
+  --awsui-grey-400: rgb(170,183,184); /* Silver */
+  --awsui-grey-500: rgb(134,149,150); /* Platinum */
+  --awsui-grey-600: rgb(84,91,100);   /* Mercury */
+  --awsui-grey-900: rgb(22,25,31);    /* Lead */
 
-    --awsui-orange-500: rgb(1, 125, 186); /* Copper */
-    --awsui-orange-600: rgb(235,95,7); /* Bromine */
+  --awsui-orange-500: rgb(1, 125, 186); /* Copper */
+  --awsui-orange-600: rgb(235,95,7); /* Bromine */
 
-    --awsui-blue-500: rgb(0,161,201); /* Argon */
-    --awsui-blue-600: rgb(0,125,188); /* Cobalt */
+  --awsui-blue-500: rgb(0,161,201); /* Argon */
+  --awsui-blue-600: rgb(0,125,188); /* Cobalt */
 
-    --awsui-green-500: rgb(106,175,53); /* Fluorine */
-    --awsui-green-600: rgb(30,137,0); /* Phosphorous */
+  --awsui-green-500: rgb(106,175,53); /* Fluorine */
+  --awsui-green-600: rgb(30,137,0); /* Phosphorous */
 
-    --awsui-squid-ink: rgb(35,47,62); /* Squid Ink */
-    --awsui-squid-ink-transparent: rgba(35,47,62,.5); /* Squid Ink half opacity */
+  --awsui-squid-ink: rgb(35,47,62); /* Squid Ink */
+  --awsui-squid-ink-transparent: rgba(35,47,62,.5); /* Squid Ink half opacity */
 
-    --awsui-amazon-orange: rgb(255,153,0); /* Amazon Orange */
-    --awsui-amazon-orange-transparent: rgb(255,153,0,0.5); /* Amazon Orange */
+  --awsui-amazon-orange: rgb(255,153,0); /* Amazon Orange */
+  --awsui-amazon-orange-transparent: rgb(255,153,0,0.5); /* Amazon Orange */
 
-    --awsui-amazon-orange: rgb(0, 138, 205); /* Kindle Blue */
-    --awsui-amazon-orange-transparent: rgb(0, 138, 205,0.5); /* Kindle Blue */
+  --awsui-amazon-orange: rgb(0, 138, 205); /* Kindle Blue */
+  --awsui-amazon-orange-transparent: rgb(0, 138, 205,0.5); /* Kindle Blue */
 
-    --base-type: var(--awsui-grey-200);
-    --base-header: var(--awsui-grey-100);
-    --base-inverted: var(--awsui-grey-900);
+  --base-type: var(--awsui-grey-200);
+  --base-header: var(--awsui-grey-100);
+  --base-inverted: var(--awsui-grey-900);
+
+  --glow-color-r: 255;
+  --glow-color-g: 255;
+  --glow-color-b: 255;
 }
 
 
@@ -244,7 +248,6 @@ animation-delay: 0.8s;
     initial-value: 0deg;
   }
   
-  /* updated positioning to match cube */ 
   .orbiter-group {
     position: absolute;
     width: 146px;
@@ -257,6 +260,7 @@ animation-delay: 0.8s;
   .orbiter-group.hover-state .airwolf-header-orbiter {
     --x-amplitude: 73px;
     --y-amplitude: 73px;
+    transition: 1s ease;
   }
 
   .airwolf-header-orbiter {
@@ -325,7 +329,7 @@ animation-delay: 0.8s;
                 0 0 4px 2px rgba(255, 255, 255, 0.7),
                 0 0 7px 3px rgba(255, 255, 255, 0.5),
                 0 0 10px 4px rgba(255, 255, 255, 0.3);
-    animation: revolve 5s linear infinite, glow 5s ease-in-out infinite alternate;
+    animation: revolve 5s linear infinite, glow 1s ease-in-out infinite alternate;
   }
   
   .airwolf-header-orbiter.tail.one {
@@ -374,16 +378,16 @@ animation-delay: 0.8s;
 
   @keyframes glow {
     from {
-      box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.6),
-                  0 0 4px 2px rgba(255, 255, 255, 0.4),
-                  0 0 7px 3px rgba(255, 255, 255, 0.2),
-                  0 0 10px 4px rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 2px 1px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.6),
+                  0 0 4px 2px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.4),
+                  0 0 7px 3px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.2),
+                  0 0 10px 4px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.1);
     }
     to {
-      box-shadow: 0 0 3px 1.5px rgba(255, 255, 255, 0.7),
-                  0 0 6px 3px rgba(255, 255, 255, 0.5),
-                  0 0 9px 4.5px rgba(255, 255, 255, 0.3),
-                  0 0 12px 6px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 3px 1.5px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.7),
+                  0 0 6px 3px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.5),
+                  0 0 9px 4.5px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.3),
+                  0 0 12px 6px rgba(var(--glow-color-r), var(--glow-color-g), var(--glow-color-b), 0.2);
     }
   }
 
@@ -402,6 +406,7 @@ animation-delay: 0.8s;
     transform-style: preserve-3d;
     transform: translate(-50%, -50%) 
     rotateX(-30deg) rotateY(-45deg);
+    
   }
   
   .airwolf-header-cube .face {
@@ -411,6 +416,7 @@ animation-delay: 0.8s;
     border: 2px solid white;
     box-sizing: border-box;
     opacity: 0;
+    
   }
 
   
@@ -445,9 +451,7 @@ animation-delay: 0.8s;
   
   .airwolf-header-cube .face {
     animation: 
-      fadeInCube 1s ease-out forwards; 
-      /*, glowCube 2s ease-in-out infinite alternate;*/
-    transition: box-shadow 0.3s ease;
-     /* fadeInCube 1s ease-out forwards,
-      glowCube 2s ease-in-out infinite alternate;*/
+      fadeInCube 2s ease-out forwards,
+      glow 2s ease-in-out infinite alternate;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
   }
