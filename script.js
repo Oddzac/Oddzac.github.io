@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const orbiterGroups = document.querySelectorAll('.orbiter-group');
     const orbiters = document.querySelectorAll('.airwolf-header-orbiter');
     const cubeFaces = document.querySelectorAll('.airwolf-header-cube .face');
-
+    const cubeContainer = document.querySelector('.orbiter-cube-container');
 
     // New click listener for the cube
-    cube.addEventListener('click', function() {
+    cubeContainer.addEventListener('click', function() {
         const newColor = getRandomColor();
         changeElementColors(newColor);
     });

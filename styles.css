@@ -249,9 +249,6 @@ animation-delay: 0.8s;
   width: 147px;
   height: 147px;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  /*transform: translateY(-50%);*/
   display: flex;
   justify-content: center;
   align-items: center;
