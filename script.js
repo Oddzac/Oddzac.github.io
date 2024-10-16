@@ -62,6 +62,28 @@ document.addEventListener('DOMContentLoaded', function() {
         return color;
     }
 
+
+
+    function adjustNavStyles() {
+        const header = document.querySelector('airwolf-header');
+        const navItems = document.querySelectorAll('nav ul li');
+        const headerHeight = header.offsetHeight;
+        const navItemCount = navItems.length;
+        
+        const availableHeight = headerHeight - (10 * (navItemCount));
+        const fontSize = Math.floor(availableHeight / navItemCount);
+        const padding = Math.floor(availableHeight / (navItemCount * 7));
+      
+        navItems.forEach(item => {
+          item.style.fontSize = `${fontSize}px`;
+          item.style.padding = `${padding}px 0`;
+        });
+    }
+
+    // Call this function when the page loads and on window resize
+    window.addEventListener('load', adjustNavStyles);
+    window.addEventListener('resize', adjustNavStyles);
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
