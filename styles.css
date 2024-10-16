@@ -254,13 +254,13 @@ animation-delay: 0.8s;
     height: 80px;
     transform-origin: center center;
     opacity: 0;
-    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
     }
 
   .orbiter-group.hover-state .airwolf-header-orbiter {
     --x-amplitude: 73px;
     --y-amplitude: 73px;
-    transition: 1s ease;
+    transition: 0.3s ease;
   }
 
   .airwolf-header-orbiter {
