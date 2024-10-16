@@ -265,7 +265,7 @@ animation-delay: 0.8s;
     --x: calc(cos(var(--angle)) * var(--x-amplitude));
     --y: calc(sin(var(--angle)) * var(--y-amplitude));
     --opacity: 1;
-    --bg-color: #3498db;
+    --bg-color: white;
     --size: 5px;
     --rotation: 0deg;
   
@@ -319,7 +319,7 @@ animation-delay: 0.8s;
   }
     
   .airwolf-header-orbiter.tail.zero {
-    --bg-color: #3498db;
+    --bg-color: white;
     --size: 4px;
     box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.9),
                 0 0 4px 2px rgba(255, 255, 255, 0.7),
@@ -408,10 +408,11 @@ animation-delay: 0.8s;
     position: absolute;
     width: 30px;
     height: 30px;
-    border: 2px solid #3498db;
+    border: 2px solid white;
     box-sizing: border-box;
     opacity: 0;
   }
+
   
   .airwolf-header-cube .front  { transform: translateZ(15px); }
   .airwolf-header-cube .right  { transform: rotateY(90deg) translateZ(15px); }
@@ -444,6 +445,9 @@ animation-delay: 0.8s;
   
   .airwolf-header-cube .face {
     animation: 
-      fadeInCube 1s ease-out forwards,
-      glowCube 2s ease-in-out infinite alternate;
+      fadeInCube 1s ease-out forwards; 
+      /*, glowCube 2s ease-in-out infinite alternate;*/
+    transition: box-shadow 0.3s ease;
+     /* fadeInCube 1s ease-out forwards,
+      glowCube 2s ease-in-out infinite alternate;*/
   }
