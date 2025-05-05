@@ -215,13 +215,13 @@
 
     <!-- Original script -->
     <script src="script.js"></script>
-    
-    <!-- Recipe database scripts -->
+
+    <!-- Recipe database -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sql-httpvfs.js"></script>
     <script>
-        // Tab switching functionality
+        // Tab switching functionality remains the same
         document.addEventListener('DOMContentLoaded', function() {
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -241,33 +241,46 @@
             });
         });
 
-        // Database configuration
+        // Database configuration - updated for httpvfs
         const dbConfig = {
-            from: "fetch",
+            from: "httpvfs",
             requestChunkSize: 4096,
-            dbUrl: "recipe_library.db"
+            url: "recipe_library.db"
         };
         
         let db;
         let recipeModal;
         
-        // Initialize the database
+        // Initialize the database - updated for httpvfs
         async function initDatabase() {
             try {
+                document.getElementById("loading").style.display = "flex";
+                
+                // Initialize SQL.js
                 const sqlPromise = initSqlJs({
                     locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.wasm`
                 });
                 
-                const [SQL, buf] = await Promise.all([
-                    sqlPromise,
-                    fetch(dbConfig.dbUrl).then(res => res.arrayBuffer())
-                ]);
+                // Get the worker URL
+                const workerUrl = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sqlite.worker.js";
                 
-                db = new SQL.Database(new Uint8Array(buf));
+                // Wait for SQL.js to initialize
+                const SQL = await sqlPromise;
+                
+                // Create a worker
+                const worker = new Worker(workerUrl);
+                
+                // Create the database using httpvfs
+                db = await SqliteHttpvfs.createHttpvfsWorker(
+                    worker,
+                    dbConfig.url,
+                    SQL,
+                    dbConfig.requestChunkSize
+                );
                 
                 // Get recipe count
-                const countResult = db.exec("SELECT COUNT(*) FROM recipes")[0];
-                document.getElementById("recipeCount").textContent = countResult.values[0][0];
+                const result = await db.query("SELECT COUNT(*) FROM recipes");
+                document.getElementById("recipeCount").textContent = result[0].values[0][0];
                 
                 // Load initial recipes
                 loadRecipes();
@@ -282,8 +295,8 @@
             }
         }
         
-        // Load recipes
-        function loadRecipes(query = "", searchType = "title", limit = 20) {
+        // Load recipes - updated for httpvfs
+        async function loadRecipes(query = "", searchType = "title", limit = 20) {
             const recipeList = document.getElementById("recipeList");
             recipeList.innerHTML = "";
             
@@ -330,28 +343,38 @@
             }
             
             try {
-                const stmt = db.prepare(sql);
-                stmt.bind(params);
+                // Execute the query using httpvfs
+                const results = await db.query(sql, params);
                 
-                while (stmt.step()) {
-                    const row = stmt.getAsObject();
-                    const recipeCard = createRecipeCard(row);
-                    recipeList.appendChild(recipeCard);
-                }
-                
-                stmt.free();
-                
-                if (recipeList.children.length === 0) {
+                if (results[0].values.length === 0) {
                     recipeList.innerHTML = `<div class="col-12"><p>No recipes found matching "${query}"</p></div>`;
+                    return;
                 }
+                
+                // Process the results
+                results[0].values.forEach((row, i) => {
+                    const recipe = {
+                        id: row[0],
+                        title: row[1],
+                        total_time: row[2],
+                        yields: row[3],
+                        image: row[4],
+                        host: row[5]
+                    };
+                    
+                    const recipeCard = createRecipeCard(recipe);
+                    recipeList.appendChild(recipeCard);
+                });
+                
             } catch (error) {
                 console.error("Query error:", error);
                 recipeList.innerHTML = `<div class="col-12"><p>Error loading recipes: ${error.message}</p></div>`;
             }
         }
         
-        // Create a recipe card element
+        // Create a recipe card element - remains the same
         function createRecipeCard(recipe) {
+            // Your existing createRecipeCard function
             const col = document.createElement("div");
             col.className = "col-md-4";
             
@@ -390,39 +413,48 @@
             return col;
         }
         
-        // Load recipe details
-        function loadRecipeDetails(recipeId) {
+        // Load recipe details - updated for httpvfs
+        async function loadRecipeDetails(recipeId) {
             try {
-                // Get recipe details
-                const recipeStmt = db.prepare(`
+                // Get recipe details using httpvfs
+                const recipeResults = await db.query(`
                     SELECT r.id, r.title, r.url, r.total_time, r.yields, r.instructions, r.image, r.host, r.nutrients, r.notes
                     FROM recipes r
                     WHERE r.id = ?
-                `);
-                recipeStmt.bind([recipeId]);
+                `, [recipeId]);
                 
-                if (!recipeStmt.step()) {
+                if (recipeResults[0].values.length === 0) {
                     alert("Recipe not found");
-                    recipeStmt.free();
                     return;
                 }
                 
-                const recipe = recipeStmt.getAsObject();
-                recipeStmt.free();
+                // Convert the row to an object
+                const recipeRow = recipeResults[0].values[0];
+                const recipe = {
+                    id: recipeRow[0],
+                    title: recipeRow[1],
+                    url: recipeRow[2],
+                    total_time: recipeRow[3],
+                    yields: recipeRow[4],
+                    instructions: recipeRow[5],
+                    image: recipeRow[6],
+                    host: recipeRow[7],
+                    nutrients: recipeRow[8],
+                    notes: recipeRow[9]
+                };
                 
                 // Get ingredients
-                const ingredientsStmt = db.prepare(`
+                const ingredientsResults = await db.query(`
                     SELECT name, measurement, unit_type
                     FROM ingredients
                     WHERE recipe_id = ?
-                `);
-                ingredientsStmt.bind([recipeId]);
+                `, [recipeId]);
                 
-                const ingredients = [];
-                while (ingredientsStmt.step()) {
-                    ingredients.push(ingredientsStmt.getAsObject());
-                }
-                ingredientsStmt.free();
+                const ingredients = ingredientsResults[0].values.map(row => ({
+                    name: row[0],
+                    measurement: row[1],
+                    unit_type: row[2]
+                }));
                 
                 // Format ingredients
                 const ingredientsList = ingredients.map(ing => {
@@ -501,7 +533,7 @@
             }
         }
         
-        // Event listeners
+        // Event listeners - remains mostly the same
         document.addEventListener("DOMContentLoaded", function() {
             // Initialize modal
             recipeModal = new bootstrap.Modal(document.getElementById("recipeDetail"));
