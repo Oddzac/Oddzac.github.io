@@ -73,8 +73,8 @@
     </style>
 </head>
 <body>
-    <!-- Loading spinner for recipe database -->
-    <div id="loading">
+    <!-- Loading spinner for recipe database - initially hidden -->
+    <div id="loading" style="display: none;">
         <div class="spinner-border text-primary" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
@@ -525,6 +525,8 @@
             // Initialize database when recipe tab is clicked
             document.querySelector('.tab-button[data-tab="recipes"]').addEventListener('click', function() {
                 if (!db) {
+                    // Show loading spinner only when we're actually loading the database
+                    document.getElementById("loading").style.display = "flex";
                     initDatabase();
                 }
             });
