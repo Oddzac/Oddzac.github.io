@@ -1,0 +1,614 @@
+{
+  "total_sites": 100,
+  "successful_sites": [
+    "https://bluejeanchef.com/",
+    "https://cooking.nytimes.com/",
+    "https://cambreabakes.com/",
+    "https://abuelascounter.com/",
+    "https://cookscountry.com/",
+    "https://aflavorjournal.com/",
+    "https://betterfoodguru.com/",
+    "https://amazingribs.com/",
+    "https://copykat.com/",
+    "https://domesticate-me.com/",
+    "https://aberlehome.com/",
+    "https://celebratingsweets.com/",
+    "https://brokenovenbaking.com/",
+    "https://cakemehometonight.com/",
+    "https://bitsofcarey.com/",
+    "https://bonappetit.com/",
+    "https://carlsbadcravings.com/",
+    "https://chefsavvy.com/",
+    "https://cafedelites.com/",
+    "https://archanaskitchen.com/",
+    "https://addapinch.com/",
+    "https://breadtopia.com/",
+    "https://downshiftology.com/",
+    "https://americastestkitchen.com/",
+    "https://cookieandkate.com/",
+    "https://cooksillustrated.com/",
+    "https://beyondfrosting.com/",
+    "https://acouplecooks.com/",
+    "https://app.samsungfood.com/",
+    "https://alexandracooks.com/",
+    "https://bongeats.com/",
+    "https://750g.com/",
+    "https://101cookbooks.com/",
+    "https://bakewithzoha.com/",
+    "https://dobruchut.aktuality.sk/",
+    "https://barefeetinthekitchen.com/",
+    "https://biancazapatka.com/",
+    "https://delish.com/",
+    "https://40aprons.com/",
+    "https://cookiesandcups.com/",
+    "https://ameessavorydish.com/",
+    "https://bakingmischief.com/",
+    "https://cookinglsl.com/",
+    "https://cookwell.com/",
+    "https://cookingwithjanica.com/"
+  ],
+  "failed_sites": [
+    "https://ahealthysliceoflife.com/",
+    "https://bbcgoodfood.com/",
+    "https://ambitiouskitchen.com/",
+    "https://bigoven.com/",
+    "https://abeautifulmess.com/",
+    "https://eatliverun.com/",
+    "https://bettycrocker.com/",
+    "https://barefootinthepines.com/",
+    "https://bbc.com/",
+    "https://bakels.co.uk/",
+    "https://cook-talk.com/",
+    "https://altonbrown.com/",
+    "https://damndelicious.net/",
+    "https://eatsmarter.com/",
+    "https://castironketo.net/",
+    "https://donalskehan.com/",
+    "https://dish.co.nz/",
+    "https://afghankitchenrecipes.com/",
+    "https://budgetbytes.com/",
+    "https://bowlofdelicious.com/",
+    "https://eatingbirdfood.com/",
+    "https://books.ottolenghi.co.uk/",
+    "https://cookingcircle.com/",
+    "https://allrecipes.com/",
+    "https://davidlebovitz.com/",
+    "https://bodybuilding.com/",
+    "https://creativecanning.com/",
+    "https://blueapron.com/",
+    "https://eatingwell.com/",
+    "https://bestrecipes.com.au/",
+    "https://cookinglight.com/",
+    "https://barefootcontessa.com/",
+    "https://bakels.com.au/",
+    "https://akispetretzikis.com/",
+    "https://cookpad.com/",
+    "https://costco.com/",
+    "https://cookeatshare.com/",
+    "https://colleenchristensennutrition.com/",
+    "https://comidinhasdochef.com/",
+    "https://chefjeanpierre.com/",
+    "https://dinnerthendessert.com/",
+    "https://alittlebityummy.com/",
+    "https://chefnini.com/",
+    "https://countryliving.com/",
+    "https://bbc.co.uk/",
+    "https://dinneratthezoo.com/",
+    "https://aldi.lu/",
+    "https://allthehealthythings.com/",
+    "https://cookomix.com/",
+    "https://closetcooking.com/",
+    "https://averiecooks.com/",
+    "https://aldi.com.au/",
+    "https://cdkitchen.com/",
+    "https://baking-sense.com/",
+    "https://amazingoriental.com/"
+  ],
+  "total_recipes": 74,
+  "total_attempts": 149,
+  "success_rate": 0.4966442953020134,
+  "elapsed_time": 29394.451733112335,
+  "recipes_per_minute": 0.15104891359475223,
+  "site_results": {
+    "https://40aprons.com/": {
+      "name": "40aprons.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://addapinch.com/": {
+      "name": "addapinch.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://abuelascounter.com/": {
+      "name": "abuelascounter.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://aberlehome.com/": {
+      "name": "aberlehome.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://acouplecooks.com/": {
+      "name": "acouplecooks.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://akispetretzikis.com/": {
+      "name": "akispetretzikis.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://afghankitchenrecipes.com/": {
+      "name": "afghankitchenrecipes.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://abeautifulmess.com/": {
+      "name": "abeautifulmess.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://101cookbooks.com/": {
+      "name": "101cookbooks.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://750g.com/": {
+      "name": "750g.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://alexandracooks.com/": {
+      "name": "alexandracooks.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://allthehealthythings.com/": {
+      "name": "allthehealthythings.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://altonbrown.com/": {
+      "name": "altonbrown.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://aldi.com.au/": {
+      "name": "aldi.com.au",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://alittlebityummy.com/": {
+      "name": "alittlebityummy.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://ahealthysliceoflife.com/": {
+      "name": "ahealthysliceoflife.com",
+      "successful": 0,
+      "attempts": 1
+    },
+    "https://allrecipes.com/": {
+      "name": "allrecipes.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://aldi.lu/": {
+      "name": "aldi.lu",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://aflavorjournal.com/": {
+      "name": "aflavorjournal.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://amazingoriental.com/": {
+      "name": "amazingoriental.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://bakels.co.uk/": {
+      "name": "bakels.co.uk",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://averiecooks.com/": {
+      "name": "averiecooks.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://amazingribs.com/": {
+      "name": "amazingribs.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://app.samsungfood.com/": {
+      "name": "app.samsungfood.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://ameessavorydish.com/": {
+      "name": "ameessavorydish.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://ambitiouskitchen.com/": {
+      "name": "ambitiouskitchen.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://bakels.com.au/": {
+      "name": "bakels.com.au",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://americastestkitchen.com/": {
+      "name": "americastestkitchen.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://bakewithzoha.com/": {
+      "name": "bakewithzoha.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://baking-sense.com/": {
+      "name": "baking-sense.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://bakingmischief.com/": {
+      "name": "bakingmischief.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://archanaskitchen.com/": {
+      "name": "archanaskitchen.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://barefeetinthekitchen.com/": {
+      "name": "barefeetinthekitchen.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://barefootcontessa.com/": {
+      "name": "barefootcontessa.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://barefootinthepines.com/": {
+      "name": "barefootinthepines.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://bbc.co.uk/": {
+      "name": "bbc.co.uk",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://bbc.com/": {
+      "name": "bbc.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://betterfoodguru.com/": {
+      "name": "betterfoodguru.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://bbcgoodfood.com/": {
+      "name": "bbcgoodfood.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://bestrecipes.com.au/": {
+      "name": "bestrecipes.com.au",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://blueapron.com/": {
+      "name": "blueapron.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://beyondfrosting.com/": {
+      "name": "beyondfrosting.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://bodybuilding.com/": {
+      "name": "bodybuilding.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://books.ottolenghi.co.uk/": {
+      "name": "books.ottolenghi.co.uk",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://bluejeanchef.com/": {
+      "name": "bluejeanchef.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://bettycrocker.com/": {
+      "name": "bettycrocker.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://bonappetit.com/": {
+      "name": "bonappetit.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://biancazapatka.com/": {
+      "name": "biancazapatka.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://bigoven.com/": {
+      "name": "bigoven.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://bongeats.com/": {
+      "name": "bongeats.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://brokenovenbaking.com/": {
+      "name": "brokenovenbaking.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://cafedelites.com/": {
+      "name": "cafedelites.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://bowlofdelicious.com/": {
+      "name": "bowlofdelicious.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://cakemehometonight.com/": {
+      "name": "cakemehometonight.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://carlsbadcravings.com/": {
+      "name": "carlsbadcravings.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://cambreabakes.com/": {
+      "name": "cambreabakes.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://breadtopia.com/": {
+      "name": "breadtopia.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://castironketo.net/": {
+      "name": "castironketo.net",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://budgetbytes.com/": {
+      "name": "budgetbytes.com",
+      "successful": 0,
+      "attempts": 1
+    },
+    "https://bitsofcarey.com/": {
+      "name": "bitsofcarey.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://closetcooking.com/": {
+      "name": "closetcooking.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://colleenchristensennutrition.com/": {
+      "name": "colleenchristensennutrition.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://chefsavvy.com/": {
+      "name": "chefsavvy.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://celebratingsweets.com/": {
+      "name": "celebratingsweets.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://chefjeanpierre.com/": {
+      "name": "chefjeanpierre.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://cookieandkate.com/": {
+      "name": "cookieandkate.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://chefnini.com/": {
+      "name": "chefnini.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://cookiesandcups.com/": {
+      "name": "cookiesandcups.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://cookeatshare.com/": {
+      "name": "cookeatshare.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://cdkitchen.com/": {
+      "name": "cdkitchen.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://cooking.nytimes.com/": {
+      "name": "cooking.nytimes.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://cook-talk.com/": {
+      "name": "cook-talk.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://cookinglight.com/": {
+      "name": "cookinglight.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://cookingwithjanica.com/": {
+      "name": "cookingwithjanica.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://cookinglsl.com/": {
+      "name": "cookinglsl.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://cookingcircle.com/": {
+      "name": "cookingcircle.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://cookpad.com/": {
+      "name": "cookpad.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://cookscountry.com/": {
+      "name": "cookscountry.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://cookomix.com/": {
+      "name": "cookomix.com",
+      "successful": 0,
+      "attempts": 1
+    },
+    "https://comidinhasdochef.com/": {
+      "name": "comidinhasdochef.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://damndelicious.net/": {
+      "name": "damndelicious.net",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://creativecanning.com/": {
+      "name": "creativecanning.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://costco.com/": {
+      "name": "costco.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://copykat.com/": {
+      "name": "copykat.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://dinnerthendessert.com/": {
+      "name": "dinnerthendessert.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://davidlebovitz.com/": {
+      "name": "davidlebovitz.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://cooksillustrated.com/": {
+      "name": "cooksillustrated.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://dinneratthezoo.com/": {
+      "name": "dinneratthezoo.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://countryliving.com/": {
+      "name": "countryliving.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://delish.com/": {
+      "name": "delish.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://downshiftology.com/": {
+      "name": "downshiftology.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://dish.co.nz/": {
+      "name": "dish.co.nz",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://cookwell.com/": {
+      "name": "cookwell.com",
+      "successful": 2,
+      "attempts": 2
+    },
+    "https://domesticate-me.com/": {
+      "name": "domesticate-me.com",
+      "successful": 1,
+      "attempts": 2
+    },
+    "https://eatingwell.com/": {
+      "name": "eatingwell.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://donalskehan.com/": {
+      "name": "donalskehan.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://eatingbirdfood.com/": {
+      "name": "eatingbirdfood.com",
+      "successful": 0,
+      "attempts": 0
+    },
+    "https://eatliverun.com/": {
+      "name": "eatliverun.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://eatsmarter.com/": {
+      "name": "eatsmarter.com",
+      "successful": 0,
+      "attempts": 2
+    },
+    "https://dobruchut.aktuality.sk/": {
+      "name": "dobruchut.aktuality.sk",
+      "successful": 2,
+      "attempts": 2
+    }
+  }
+}
