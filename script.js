@@ -115,36 +115,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-async function loadDatabase(dbName) {
-    try {
-        const SQL = await initSqlJs({
-            locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.wasm`
-        });
-        
-        // Use the CORS proxy
-        const proxyUrl = `cors-proxy.html?file=${dbName}`;
-        const response = await fetch(proxyUrl);
-        const dataUrl = await response.text();
-        
-        if (dataUrl.startsWith('data:application/octet-stream;base64,')) {
-            const base64 = dataUrl.substring('data:application/octet-stream;base64,'.length);
-            const binary = atob(base64);
-            const bytes = new Uint8Array(binary.length);
-            for (let i = 0; i < binary.length; i++) {
-                bytes[i] = binary.charCodeAt(i);
-            }
-            
-            return new SQL.Database(bytes);
-        } else {
-            throw new Error('Invalid data URL');
-        }
-    } catch (error) {
-        console.error("Database loading error:", error);
-        throw error;
-    }
-}
-
-
-
 
 });
