@@ -9,7 +9,7 @@
     <!-- Bootstrap for recipe database -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Recipe database specific styles */
+
         .recipe-card {
             margin-bottom: 20px;
             transition: transform 0.3s;
@@ -33,10 +33,9 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.389);
         }
         
-        /* Ensure Bootstrap doesn't interfere with original styling */
         .airwolf-wrapper {
             width: 100%;
         }
@@ -70,9 +69,12 @@
         .tab-content.active {
             display: block;
         }
+
     </style>
 </head>
+
 <body>
+
     <!-- Loading spinner for recipe database - initially hidden -->
     <div id="loading" style="display: none;">
         <div class="spinner-border text-primary" role="status">
@@ -80,7 +82,7 @@
         </div>
     </div>
 
-    <!-- Original header -->
+    <!-- Header -->
     <header>
         <div class="airwolf-wrapper">
             <div class="airwolf-header">
@@ -132,23 +134,17 @@
         </div>
     </header>
 
-    <!-- Tab buttons to switch between portfolio and recipe database -->
-    <div class="content-tabs">
-        <button class="tab-button active" data-tab="portfolio">Portfolio</button>
-        <button class="tab-button" data-tab="recipes">Recipe Database</button>
-    </div>
-
-    <!-- Original portfolio content -->
+    <!-- Portfolio content -->
     <div id="portfolio-content" class="tab-content active">
         <main>
             <section id="home">
                 <h1>Welcome to My Portfolio</h1>
-                <p>Hello, I'm Oddzac. I'm a Moonlight Developer.</p>
+                <p>...</p>
             </section>
 
             <section id="about">
                 <h2>About Me</h2>
-                <p>Here you can write a brief introduction about yourself and your skills.</p>
+                <p>...</p>
             </section>
 
             <section id="projects">
@@ -162,7 +158,7 @@
 
             <section id="contact">
                 <h2>Contact Me</h2>
-                <p>You can reach me at: your.email@example.com</p>
+                <p>...</p>
             </section>
         </main>
     </div>
@@ -209,19 +205,21 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 I have no rights, I'm an American</p>
-    </footer>
+    <!-- Tab buttons to switch between portfolio and recipe database -->
+    <div class="content-tabs">
+        <button class="tab-button active" data-tab="portfolio">Portfolio</button>
+        <button class="tab-button" data-tab="recipes">Recipe Database</button>
+    </div>
 
-    <!-- Original script -->
+
     <script src="script.js"></script>
-
-    <!-- Recipe database -->
+    <!-- Recipe database scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sql-httpvfs.js"></script>
+    <script src="script.js"></script>
     <script>
-        // Tab switching functionality remains the same
+        // Tab switching functionality
         document.addEventListener('DOMContentLoaded', function() {
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
@@ -237,306 +235,327 @@
                     // Add active class to clicked button and corresponding content
                     button.classList.add('active');
                     document.getElementById(tabId + '-content').classList.add('active');
+                    
+                    // Initialize database when recipe tab is clicked
+                    if (tabId === 'recipes' && !window.dbInitialized) {
+                        document.getElementById("loading").style.display = "flex";
+                        initDatabase();
+                    }
                 });
             });
-        });
-
-        // Database configuration - updated for httpvfs
-        const dbConfig = {
-            from: "httpvfs",
-            requestChunkSize: 4096,
-            url: "recipe_library.db"
-        };
-        
-        let db;
-        let recipeModal;
-        
-        // Initialize the database - updated for httpvfs
-        async function initDatabase() {
-            try {
-                document.getElementById("loading").style.display = "flex";
-                
-                // Initialize SQL.js
-                const sqlPromise = initSqlJs({
-                    locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.wasm`
-                });
-                
-                // Get the worker URL
-                const workerUrl = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sqlite.worker.js";
-                
-                // Wait for SQL.js to initialize
-                const SQL = await sqlPromise;
-                
-                // Create a worker
-                const worker = new Worker(workerUrl);
-                
-                // Create the database using httpvfs
-                db = await SqliteHttpvfs.createHttpvfsWorker(
-                    worker,
-                    dbConfig.url,
-                    SQL,
-                    dbConfig.requestChunkSize
-                );
-                
-                // Get recipe count
-                const result = await db.query("SELECT COUNT(*) FROM recipes");
-                document.getElementById("recipeCount").textContent = result[0].values[0][0];
-                
-                // Load initial recipes
-                loadRecipes();
-                
-                // Hide loading spinner
-                document.getElementById("loading").style.display = "none";
-            } catch (error) {
-                console.error("Database initialization error:", error);
-                alert("Failed to load the recipe database. Please try again later.");
-                // Hide loading spinner even on error
-                document.getElementById("loading").style.display = "none";
-            }
-        }
-        
-        // Load recipes - updated for httpvfs
-        async function loadRecipes(query = "", searchType = "title", limit = 20) {
-            const recipeList = document.getElementById("recipeList");
-            recipeList.innerHTML = "";
             
-            let sql;
-            let params = [];
+            // Initialize database variables
+            window.dbInitialized = false;
+            let db = null;
+            let recipeModal = null;
             
-            if (!query) {
-                sql = `
-                    SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
-                    FROM recipes r
-                    ORDER BY r.id
-                    LIMIT ?
-                `;
-                params = [limit];
-            } else if (searchType === "title") {
-                sql = `
-                    SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
-                    FROM recipes r
-                    WHERE r.title LIKE ?
-                    ORDER BY r.id
-                    LIMIT ?
-                `;
-                params = [`%${query}%`, limit];
-            } else if (searchType === "ingredient") {
-                sql = `
-                    SELECT DISTINCT r.id, r.title, r.total_time, r.yields, r.image, r.host
-                    FROM recipes r
-                    JOIN ingredients i ON r.id = i.recipe_id
-                    WHERE i.name LIKE ?
-                    ORDER BY r.id
-                    LIMIT ?
-                `;
-                params = [`%${query}%`, limit];
-            } else if (searchType === "time") {
-                const maxTime = parseInt(query) || 30;
-                sql = `
-                    SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
-                    FROM recipes r
-                    WHERE r.total_time <= ? AND r.total_time > 0
-                    ORDER BY r.total_time
-                    LIMIT ?
-                `;
-                params = [maxTime, limit];
+            // Initialize the database with httpvfs
+            async function initDatabase() {
+                try {
+                    console.log("Initializing database...");
+                    
+                    // Load SQL.js
+                    const sqlPromise = initSqlJs({
+                        locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.wasm`
+                    });
+                    
+                    // Get the worker URL
+                    const workerUrl = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sqlite.worker.js";
+                    
+                    // Wait for SQL.js to initialize
+                    const SQL = await sqlPromise;
+                    console.log("SQL.js initialized");
+                    
+                    // Create a worker
+                    const worker = new Worker(workerUrl);
+                    console.log("Worker created");
+                    
+                    // Create the database using httpvfs
+                    // Use absolute URL to ensure correct path
+                    const dbUrl = window.location.href.replace(/\/[^\/]*$/, '/') + "recipe_library.db";
+                    console.log("Database URL:", dbUrl);
+                    
+                    db = await SqliteHttpvfs.createHttpvfsWorker(
+                        worker,
+                        dbUrl,
+                        SQL,
+                        4096 // chunk size
+                    );
+                    console.log("Database connection established");
+                    
+                    // Get recipe count
+                    const result = await db.query("SELECT COUNT(*) FROM recipes");
+                    const count = result[0].values[0][0];
+                    document.getElementById("recipeCount").textContent = count;
+                    console.log(`Found ${count} recipes`);
+                    
+                    // Load initial recipes
+                    await loadRecipes();
+                    
+                    // Mark as initialized
+                    window.dbInitialized = true;
+                    
+                    // Hide loading spinner
+                    document.getElementById("loading").style.display = "none";
+                } catch (error) {
+                    console.error("Database initialization error:", error);
+                    alert("Failed to load the recipe database. Please check the console for details.");
+                    document.getElementById("loading").style.display = "none";
+                }
             }
             
-            try {
-                // Execute the query using httpvfs
-                const results = await db.query(sql, params);
-                
-                if (results[0].values.length === 0) {
-                    recipeList.innerHTML = `<div class="col-12"><p>No recipes found matching "${query}"</p></div>`;
+            // Load recipes
+            async function loadRecipes(query = "", searchType = "title", limit = 20) {
+                if (!db) {
+                    console.error("Database not initialized");
                     return;
                 }
                 
-                // Process the results
-                results[0].values.forEach((row, i) => {
+                const recipeList = document.getElementById("recipeList");
+                recipeList.innerHTML = "";
+                
+                try {
+                    console.log(`Searching for ${searchType}: "${query}"`);
+                    
+                    let sql;
+                    let params = [];
+                    
+                    if (!query) {
+                        sql = `
+                            SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
+                            FROM recipes r
+                            ORDER BY r.id
+                            LIMIT ?
+                        `;
+                        params = [limit];
+                    } else if (searchType === "title") {
+                        sql = `
+                            SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
+                            FROM recipes r
+                            WHERE r.title LIKE ?
+                            ORDER BY r.id
+                            LIMIT ?
+                        `;
+                        params = [`%${query}%`, limit];
+                    } else if (searchType === "ingredient") {
+                        sql = `
+                            SELECT DISTINCT r.id, r.title, r.total_time, r.yields, r.image, r.host
+                            FROM recipes r
+                            JOIN ingredients i ON r.id = i.recipe_id
+                            WHERE i.name LIKE ?
+                            ORDER BY r.id
+                            LIMIT ?
+                        `;
+                        params = [`%${query}%`, limit];
+                    } else if (searchType === "time") {
+                        const maxTime = parseInt(query) || 30;
+                        sql = `
+                            SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
+                            FROM recipes r
+                            WHERE r.total_time <= ? AND r.total_time > 0
+                            ORDER BY r.total_time
+                            LIMIT ?
+                        `;
+                        params = [maxTime, limit];
+                    }
+                    
+                    // Execute the query
+                    const results = await db.query(sql, params);
+                    console.log(`Found ${results[0].values.length} results`);
+                    
+                    if (results[0].values.length === 0) {
+                        recipeList.innerHTML = `<div class="col-12"><p>No recipes found matching "${query}"</p></div>`;
+                        return;
+                    }
+                    
+                    // Process the results
+                    results[0].values.forEach((row, i) => {
+                        const recipe = {
+                            id: row[0],
+                            title: row[1],
+                            total_time: row[2],
+                            yields: row[3],
+                            image: row[4],
+                            host: row[5]
+                        };
+                        
+                        const recipeCard = createRecipeCard(recipe);
+                        recipeList.appendChild(recipeCard);
+                    });
+                } catch (error) {
+                    console.error("Query error:", error);
+                    recipeList.innerHTML = `<div class="col-12"><p>Error loading recipes: ${error.message}</p></div>`;
+                }
+            }
+            
+            // Create a recipe card element
+            function createRecipeCard(recipe) {
+                const col = document.createElement("div");
+                col.className = "col-md-4";
+                
+                const card = document.createElement("div");
+                card.className = "card recipe-card h-100";
+                
+                let imageHtml = '';
+                if (recipe.image) {
+                    imageHtml = `<img src="${recipe.image}" class="card-img-top" alt="${recipe.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=No+Image';">`;
+                } else {
+                    imageHtml = `<img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top" alt="No Image">`;
+                }
+                
+                card.innerHTML = `
+                    ${imageHtml}
+                    <div class="card-body">
+                        <h5 class="card-title">${recipe.title}</h5>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                ${recipe.total_time} minutes | ${recipe.yields} | ${recipe.host}
+                            </small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary btn-sm view-recipe" data-recipe-id="${recipe.id}">View Recipe</button>
+                    </div>
+                `;
+                
+                col.appendChild(card);
+                
+                // Add event listener to view recipe button
+                col.querySelector(".view-recipe").addEventListener("click", () => {
+                    loadRecipeDetails(recipe.id);
+                });
+                
+                return col;
+            }
+            
+            // Load recipe details
+            async function loadRecipeDetails(recipeId) {
+                if (!db) {
+                    console.error("Database not initialized");
+                    return;
+                }
+                
+                try {
+                    console.log(`Loading details for recipe ${recipeId}`);
+                    
+                    // Get recipe details
+                    const recipeResults = await db.query(`
+                        SELECT r.id, r.title, r.url, r.total_time, r.yields, r.instructions, r.image, r.host, r.nutrients, r.notes
+                        FROM recipes r
+                        WHERE r.id = ?
+                    `, [recipeId]);
+                    
+                    if (recipeResults[0].values.length === 0) {
+                        alert("Recipe not found");
+                        return;
+                    }
+                    
+                    // Convert the row to an object
+                    const recipeRow = recipeResults[0].values[0];
                     const recipe = {
-                        id: row[0],
-                        title: row[1],
-                        total_time: row[2],
-                        yields: row[3],
-                        image: row[4],
-                        host: row[5]
+                        id: recipeRow[0],
+                        title: recipeRow[1],
+                        url: recipeRow[2],
+                        total_time: recipeRow[3],
+                        yields: recipeRow[4],
+                        instructions: recipeRow[5],
+                        image: recipeRow[6],
+                        host: recipeRow[7],
+                        nutrients: recipeRow[8],
+                        notes: recipeRow[9]
                     };
                     
-                    const recipeCard = createRecipeCard(recipe);
-                    recipeList.appendChild(recipeCard);
-                });
-                
-            } catch (error) {
-                console.error("Query error:", error);
-                recipeList.innerHTML = `<div class="col-12"><p>Error loading recipes: ${error.message}</p></div>`;
-            }
-        }
-        
-        // Create a recipe card element - remains the same
-        function createRecipeCard(recipe) {
-            // Your existing createRecipeCard function
-            const col = document.createElement("div");
-            col.className = "col-md-4";
-            
-            const card = document.createElement("div");
-            card.className = "card recipe-card h-100";
-            
-            let imageHtml = '';
-            if (recipe.image) {
-                imageHtml = `<img src="${recipe.image}" class="card-img-top" alt="${recipe.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x200?text=No+Image';">`;
-            } else {
-                imageHtml = `<img src="https://via.placeholder.com/300x200?text=No+Image" class="card-img-top" alt="No Image">`;
-            }
-            
-            card.innerHTML = `
-                ${imageHtml}
-                <div class="card-body">
-                    <h5 class="card-title">${recipe.title}</h5>
-                    <p class="card-text">
-                        <small class="text-muted">
-                            ${recipe.total_time} minutes | ${recipe.yields} | ${recipe.host}
-                        </small>
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-primary btn-sm view-recipe" data-recipe-id="${recipe.id}">View Recipe</button>
-                </div>
-            `;
-            
-            col.appendChild(card);
-            
-            // Add event listener to view recipe button
-            col.querySelector(".view-recipe").addEventListener("click", () => {
-                loadRecipeDetails(recipe.id);
-            });
-            
-            return col;
-        }
-        
-        // Load recipe details - updated for httpvfs
-        async function loadRecipeDetails(recipeId) {
-            try {
-                // Get recipe details using httpvfs
-                const recipeResults = await db.query(`
-                    SELECT r.id, r.title, r.url, r.total_time, r.yields, r.instructions, r.image, r.host, r.nutrients, r.notes
-                    FROM recipes r
-                    WHERE r.id = ?
-                `, [recipeId]);
-                
-                if (recipeResults[0].values.length === 0) {
-                    alert("Recipe not found");
-                    return;
-                }
-                
-                // Convert the row to an object
-                const recipeRow = recipeResults[0].values[0];
-                const recipe = {
-                    id: recipeRow[0],
-                    title: recipeRow[1],
-                    url: recipeRow[2],
-                    total_time: recipeRow[3],
-                    yields: recipeRow[4],
-                    instructions: recipeRow[5],
-                    image: recipeRow[6],
-                    host: recipeRow[7],
-                    nutrients: recipeRow[8],
-                    notes: recipeRow[9]
-                };
-                
-                // Get ingredients
-                const ingredientsResults = await db.query(`
-                    SELECT name, measurement, unit_type
-                    FROM ingredients
-                    WHERE recipe_id = ?
-                `, [recipeId]);
-                
-                const ingredients = ingredientsResults[0].values.map(row => ({
-                    name: row[0],
-                    measurement: row[1],
-                    unit_type: row[2]
-                }));
-                
-                // Format ingredients
-                const ingredientsList = ingredients.map(ing => {
-                    if (ing.measurement && ing.unit_type) {
-                        return `<li>${ing.measurement} ${ing.unit_type} ${ing.name}</li>`;
-                    } else if (ing.measurement) {
-                        return `<li>${ing.measurement} ${ing.name}</li>`;
-                    } else {
-                        return `<li>${ing.name}</li>`;
-                    }
-                }).join("");
-                
-                // Format instructions
-                const instructions = recipe.instructions.split("\n").filter(step => step.trim()).map((step, index) => {
-                    return `<p><strong>${index + 1}.</strong> ${step.trim()}</p>`;
-                }).join("");
-                
-                // Format nutrients
-                let nutrientsHtml = "";
-                try {
-                    const nutrients = JSON.parse(recipe.nutrients);
-                    if (nutrients && Object.keys(nutrients).length > 0) {
-                        nutrientsHtml = `
-                            <h5 class="mt-4">Nutrition Information</h5>
-                            <ul>
-                                ${Object.entries(nutrients).map(([key, value]) => {
-                                    if (value) return `<li>${key}: ${value}</li>`;
-                                    return "";
-                                }).join("")}
-                            </ul>
-                        `;
-                    }
-                } catch (e) {
-                    console.error("Error parsing nutrients:", e);
-                }
-                
-                // Populate modal
-                document.getElementById("recipeDetailContent").innerHTML = `
-                    <div class="row">
-                        <div class="col-md-4">
-                            ${recipe.image ? `<img src="${recipe.image}" class="img-fluid rounded" alt="${recipe.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x400?text=No+Image';">` : ''}
-                        </div>
-                        <div class="col-md-8">
-                            <h3>${recipe.title}</h3>
-                            <p>
-                                <a href="${recipe.url}" target="_blank">${recipe.host}</a> | 
-                                ${recipe.total_time} minutes | ${recipe.yields}
-                            </p>
-                            
-                            <h5>Ingredients</h5>
-                            <ul class="ingredient-list">
-                                ${ingredientsList}
-                            </ul>
-                        </div>
-                    </div>
+                    // Get ingredients
+                    const ingredientsResults = await db.query(`
+                        SELECT name, measurement, unit_type
+                        FROM ingredients
+                        WHERE recipe_id = ?
+                    `, [recipeId]);
                     
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <h5>Instructions</h5>
-                            <div class="instructions">
-                                ${instructions}
+                    const ingredients = ingredientsResults[0].values.map(row => ({
+                        name: row[0],
+                        measurement: row[1],
+                        unit_type: row[2]
+                    }));
+                    
+                    // Format ingredients
+                    const ingredientsList = ingredients.map(ing => {
+                        if (ing.measurement && ing.unit_type) {
+                            return `<li>${ing.measurement} ${ing.unit_type} ${ing.name}</li>`;
+                        } else if (ing.measurement) {
+                            return `<li>${ing.measurement} ${ing.name}</li>`;
+                        } else {
+                            return `<li>${ing.name}</li>`;
+                        }
+                    }).join("");
+                    
+                    // Format instructions
+                    const instructions = recipe.instructions.split("\n").filter(step => step.trim()).map((step, index) => {
+                        return `<p><strong>${index + 1}.</strong> ${step.trim()}</p>`;
+                    }).join("");
+                    
+                    // Format nutrients
+                    let nutrientsHtml = "";
+                    try {
+                        const nutrients = JSON.parse(recipe.nutrients);
+                        if (nutrients && Object.keys(nutrients).length > 0) {
+                            nutrientsHtml = `
+                                <h5 class="mt-4">Nutrition Information</h5>
+                                <ul>
+                                    ${Object.entries(nutrients).map(([key, value]) => {
+                                        if (value) return `<li>${key}: ${value}</li>`;
+                                        return "";
+                                    }).join("")}
+                                </ul>
+                            `;
+                        }
+                    } catch (e) {
+                        console.error("Error parsing nutrients:", e);
+                    }
+                    
+                    // Populate modal
+                    document.getElementById("recipeDetailContent").innerHTML = `
+                        <div class="row">
+                            <div class="col-md-4">
+                                ${recipe.image ? `<img src="${recipe.image}" class="img-fluid rounded" alt="${recipe.title}" onerror="this.onerror=null;this.src='https://via.placeholder.com/300x400?text=No+Image';">` : ''}
                             </div>
-                            
-                            ${nutrientsHtml}
+                            <div class="col-md-8">
+                                <h3>${recipe.title}</h3>
+                                <p>
+                                    <a href="${recipe.url}" target="_blank">${recipe.host}</a> | 
+                                    ${recipe.total_time} minutes | ${recipe.yields}
+                                </p>
+                                
+                                <h5>Ingredients</h5>
+                                <ul class="ingredient-list">
+                                    ${ingredientsList}
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                `;
-                
-                // Show modal
-                const modal = new bootstrap.Modal(document.getElementById("recipeDetail"));
-                modal.show();
-                
-            } catch (error) {
-                console.error("Error loading recipe details:", error);
-                alert("Failed to load recipe details");
+                        
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <h5>Instructions</h5>
+                                <div class="instructions">
+                                    ${instructions}
+                                </div>
+                                
+                                ${nutrientsHtml}
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Show modal
+                    if (!recipeModal) {
+                        recipeModal = new bootstrap.Modal(document.getElementById("recipeDetail"));
+                    }
+                    recipeModal.show();
+                    
+                } catch (error) {
+                    console.error("Error loading recipe details:", error);
+                    alert("Failed to load recipe details");
+                }
             }
-        }
-        
-        // Event listeners - remains mostly the same
-        document.addEventListener("DOMContentLoaded", function() {
-            // Initialize modal
-            recipeModal = new bootstrap.Modal(document.getElementById("recipeDetail"));
             
             // Search button click
             document.getElementById("searchButton").addEventListener("click", function() {
@@ -551,15 +570,6 @@
                     const query = document.getElementById("searchInput").value;
                     const searchType = document.getElementById("searchType").value;
                     loadRecipes(query, searchType);
-                }
-            });
-            
-            // Initialize database when recipe tab is clicked
-            document.querySelector('.tab-button[data-tab="recipes"]').addEventListener('click', function() {
-                if (!db) {
-                    // Show loading spinner only when we're actually loading the database
-                    document.getElementById("loading").style.display = "flex";
-                    initDatabase();
                 }
             });
         });
