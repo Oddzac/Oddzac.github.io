@@ -216,7 +216,7 @@
     <!-- Recipe database scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sql-httpvfs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/index.js"></script>
     <script src="script.js"></script>
     <script>
         // Tab switching functionality
@@ -258,7 +258,7 @@
                     const sqlPromise = initSqlJs({
                         locateFile: file => `sql-wasm.wasm` // Local path
                     });
-                    
+
                     // Get the worker URL - use local path
                     const workerUrl = "sqlite.worker.js";
                     
@@ -275,12 +275,35 @@
                     const dbUrl = window.location.href.replace(/\/[^\/]*$/, '/') + "recipe_library.db";
                     console.log("Database URL:", dbUrl);
                     
-                    db = await SqliteHttpvfs.createHttpvfsWorker(
-                        worker,
-                        dbUrl,
-                        SQL,
-                        4096 // chunk size
-                    );
+                    // Check how the library is exposed
+                    if (typeof createHttpvfsWorker === 'function') {
+                        // If the function is directly exposed
+                        db = await createHttpvfsWorker(
+                            worker,
+                            dbUrl,
+                            SQL,
+                            4096 // chunk size
+                        );
+                    } else if (typeof sqliteHttpvfs !== 'undefined' && typeof sqliteHttpvfs.createHttpvfsWorker === 'function') {
+                        // If it's exposed as a namespace
+                        db = await sqliteHttpvfs.createHttpvfsWorker(
+                            worker,
+                            dbUrl,
+                            SQL,
+                            4096 // chunk size
+                        );
+                    } else if (typeof SqliteHttpvfs !== 'undefined' && typeof SqliteHttpvfs.createHttpvfsWorker === 'function') {
+                        // Another possible namespace
+                        db = await SqliteHttpvfs.createHttpvfsWorker(
+                            worker,
+                            dbUrl,
+                            SQL,
+                            4096 // chunk size
+                        );
+                    } else {
+                        throw new Error("Could not find the createHttpvfsWorker function. Check how the library is exposed.");
+                    }
+                    
                     console.log("Database connection established");
                     
                     // Get recipe count
