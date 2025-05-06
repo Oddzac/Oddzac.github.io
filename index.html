@@ -256,11 +256,11 @@
                     
                     // Load SQL.js
                     const sqlPromise = initSqlJs({
-                        locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.wasm`
+                        locateFile: file => `sql-wasm.wasm` // Local path
                     });
                     
-                    // Get the worker URL
-                    const workerUrl = "https://cdn.jsdelivr.net/npm/sql.js-httpvfs@0.8.12/dist/sqlite.worker.js";
+                    // Get the worker URL - use local path
+                    const workerUrl = "sqlite.worker.js";
                     
                     // Wait for SQL.js to initialize
                     const SQL = await sqlPromise;
