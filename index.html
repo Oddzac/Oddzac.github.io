@@ -260,6 +260,8 @@
                     
                     // Fetch the database file
                     const dbUrl = window.location.href.replace(/\/[^\/]*$/, '/') + "recipe_library.db";
+                    console.log("Database URL:", dbUrl);
+                    
                     const response = await fetch(dbUrl);
                     const arrayBuffer = await response.arrayBuffer();
                     const uInt8Array = new Uint8Array(arrayBuffer);
@@ -269,7 +271,7 @@
                     console.log("Database connection established");
                     
                     // Get recipe count
-                    const result = await db.query("SELECT COUNT(*) FROM recipes");
+                    const result = db.exec("SELECT COUNT(*) FROM recipes");
                     const count = result[0].values[0][0];
                     document.getElementById("recipeCount").textContent = count;
                     console.log(`Found ${count} recipes`);
@@ -288,7 +290,7 @@
                     document.getElementById("loading").style.display = "none";
                 }
             }
-            
+
             // Load recipes
             async function loadRecipes(query = "", searchType = "title", limit = 20) {
                 if (!db) {
@@ -310,45 +312,41 @@
                             SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
                             FROM recipes r
                             ORDER BY r.id
-                            LIMIT ?
+                            LIMIT ${limit}
                         `;
-                        params = [limit];
                     } else if (searchType === "title") {
                         sql = `
                             SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
                             FROM recipes r
-                            WHERE r.title LIKE ?
+                            WHERE r.title LIKE '%${query}%'
                             ORDER BY r.id
-                            LIMIT ?
+                            LIMIT ${limit}
                         `;
-                        params = [`%${query}%`, limit];
                     } else if (searchType === "ingredient") {
                         sql = `
                             SELECT DISTINCT r.id, r.title, r.total_time, r.yields, r.image, r.host
                             FROM recipes r
                             JOIN ingredients i ON r.id = i.recipe_id
-                            WHERE i.name LIKE ?
+                            WHERE i.name LIKE '%${query}%'
                             ORDER BY r.id
-                            LIMIT ?
+                            LIMIT ${limit}
                         `;
-                        params = [`%${query}%`, limit];
                     } else if (searchType === "time") {
                         const maxTime = parseInt(query) || 30;
                         sql = `
                             SELECT r.id, r.title, r.total_time, r.yields, r.image, r.host
                             FROM recipes r
-                            WHERE r.total_time <= ? AND r.total_time > 0
+                            WHERE r.total_time <= ${maxTime} AND r.total_time > 0
                             ORDER BY r.total_time
-                            LIMIT ?
+                            LIMIT ${limit}
                         `;
-                        params = [maxTime, limit];
                     }
                     
                     // Execute the query
-                    const results = await db.query(sql, params);
-                    console.log(`Found ${results[0].values.length} results`);
+                    const results = db.exec(sql);
+                    console.log(`Found ${results[0]?.values.length || 0} results`);
                     
-                    if (results[0].values.length === 0) {
+                    if (!results[0] || results[0].values.length === 0) {
                         recipeList.innerHTML = `<div class="col-12"><p>No recipes found matching "${query}"</p></div>`;
                         return;
                     }
@@ -372,7 +370,7 @@
                     recipeList.innerHTML = `<div class="col-12"><p>Error loading recipes: ${error.message}</p></div>`;
                 }
             }
-            
+
             // Create a recipe card element
             function createRecipeCard(recipe) {
                 const col = document.createElement("div");
