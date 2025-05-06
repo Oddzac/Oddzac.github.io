@@ -249,61 +249,23 @@
             let db = null;
             let recipeModal = null;
             
-            // Initialize the database with httpvfs
             async function initDatabase() {
                 try {
                     console.log("Initializing database...");
                     
                     // Load SQL.js
-                    const sqlPromise = initSqlJs({
-                        locateFile: file => `sql-wasm.wasm` // Local path
+                    const SQL = await initSqlJs({
+                        locateFile: file => `sql-wasm.wasm`
                     });
-
-                    // Get the worker URL - use local path
-                    const workerUrl = "sqlite.worker.js";
                     
-                    // Wait for SQL.js to initialize
-                    const SQL = await sqlPromise;
-                    console.log("SQL.js initialized");
-                    
-                    // Create a worker
-                    const worker = new Worker(workerUrl);
-                    console.log("Worker created");
-                    
-                    // Create the database using httpvfs
-                    // Use absolute URL to ensure correct path
+                    // Fetch the database file
                     const dbUrl = window.location.href.replace(/\/[^\/]*$/, '/') + "recipe_library.db";
-                    console.log("Database URL:", dbUrl);
+                    const response = await fetch(dbUrl);
+                    const arrayBuffer = await response.arrayBuffer();
+                    const uInt8Array = new Uint8Array(arrayBuffer);
                     
-                    // Check how the library is exposed
-                    if (typeof createHttpvfsWorker === 'function') {
-                        // If the function is directly exposed
-                        db = await createHttpvfsWorker(
-                            worker,
-                            dbUrl,
-                            SQL,
-                            4096 // chunk size
-                        );
-                    } else if (typeof sqliteHttpvfs !== 'undefined' && typeof sqliteHttpvfs.createHttpvfsWorker === 'function') {
-                        // If it's exposed as a namespace
-                        db = await sqliteHttpvfs.createHttpvfsWorker(
-                            worker,
-                            dbUrl,
-                            SQL,
-                            4096 // chunk size
-                        );
-                    } else if (typeof SqliteHttpvfs !== 'undefined' && typeof SqliteHttpvfs.createHttpvfsWorker === 'function') {
-                        // Another possible namespace
-                        db = await SqliteHttpvfs.createHttpvfsWorker(
-                            worker,
-                            dbUrl,
-                            SQL,
-                            4096 // chunk size
-                        );
-                    } else {
-                        throw new Error("Could not find the createHttpvfsWorker function. Check how the library is exposed.");
-                    }
-                    
+                    // Create the database
+                    db = new SQL.Database(uInt8Array);
                     console.log("Database connection established");
                     
                     // Get recipe count
