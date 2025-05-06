@@ -65,8 +65,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function adjustNavStyles() {
-        const header = document.querySelector('airwolf-header');
+        const header = document.querySelector('.airwolf-header');
+        if (!header) return; // Safely exit if element doesn't exist
+        
         const navItems = document.querySelectorAll('nav ul li');
+        if (navItems.length === 0) return; // Safely exit if no nav items
+        
         const headerHeight = header.offsetHeight;
         const navItemCount = navItems.length;
         
