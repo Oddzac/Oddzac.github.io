@@ -496,11 +496,12 @@ form input[type="submit"]:hover {
 .orbiter-cube-container {
     width: 200px;
     height: 200px;
+    opacity: .65;
     position: absolute;
     display: flex;
-    right: -5%;
+    right: 5%;
     top: 50%;
-    transform: translateY(-50%) scale(1.7);
+    transform: translateY(-50%) scale(5.5);
     justify-content: center;
     align-items: center;
     z-index: 1000;
