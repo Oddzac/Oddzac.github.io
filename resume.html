@@ -58,49 +58,55 @@
                 
                 <h4>Experience</h4>
                 
-                <div class="role-card">
+                <div class="role-card collapsed">
                     <div class="role-header">
                         <h5 class="role-title">Amazon, SAV7 — L3 Data Analyst</h5>
                         <p class="role-period">Feb 2024 - Present</p>
                     </div>
-                    <ul>
-                        <li>Increased site pick rates by 18.7% (5.72 UPH) by developing a Python program, AutoPath, for pick path optimization</li>
-                        <li>Developed and launched a network level python program, PickAssist, to optimize outbound process efficiency, saving ~$28M/year</li>
-                        <li>Conducted analysis of quality KPIs and defect reporting, identifying trends and areas for improvement</li>
-                        <li>Developed automated reporting that leverage scheduled SQL queries via network service data lakes, AWS S3 cloud storage integrations, and Amazon Quick Suite for dashboarding data visualizations in real time</li>
-                        <li>Developed automated solutions using Excel and Python to enhance process efficiency</li>
-                        <li>Created and maintained dashboards for tracking and visualizing key quality metrics</li>
-                        <li>Collaborated with cross-functional teams at site and network levels to implement data-driven process improvements</li>
-                    </ul>
+                    <div class="role-content">
+                        <ul>
+                            <li>Increased site pick rates by 18.7% (5.72 UPH) by developing a Python program, AutoPath, for pick path optimization</li>
+                            <li>Developed and launched a network level python program, PickAssist, to optimize outbound process efficiency, saving ~$28M/year</li>
+                            <li>Conducted analysis of quality KPIs and defect reporting, identifying trends and areas for improvement</li>
+                            <li>Developed automated reporting that leverage scheduled SQL queries via network service data lakes, AWS S3 cloud storage integrations, and Amazon Quick Suite for dashboarding data visualizations in real time</li>
+                            <li>Developed automated solutions using Excel and Python to enhance process efficiency</li>
+                            <li>Created and maintained dashboards for tracking and visualizing key quality metrics</li>
+                            <li>Collaborated with cross-functional teams at site and network levels to implement data-driven process improvements</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="role-card">
+                <div class="role-card collapsed">
                     <div class="role-header">
                         <h5 class="role-title">Amazon, SAV7 — Transportation Associate</h5>
                         <p class="role-period">Apr 2023 - Feb 2024</p>
                     </div>
-                    <ul>
-                        <li>Developed daily and weekly metrics reports that enhanced safety and accountability</li>
-                        <li>Optimized yard efficiency through data-driven decision making and strategic organization</li>
-                        <li>Collaborated with corporate and third-party agencies to maximize site utilization</li>
-                        <li>Ensured regular compliance with both site and federal transportation-related safety regulations</li>
-                        <li>Maintained safe and efficient personal operations throughout tenure in role</li>
-                    </ul>
+                    <div class="role-content">
+                        <ul>
+                            <li>Developed daily and weekly metrics reports that enhanced safety and accountability</li>
+                            <li>Optimized yard efficiency through data-driven decision making and strategic organization</li>
+                            <li>Collaborated with corporate and third-party agencies to maximize site utilization</li>
+                            <li>Ensured regular compliance with both site and federal transportation-related safety regulations</li>
+                            <li>Maintained safe and efficient personal operations throughout tenure in role</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <div class="role-card">
+                <div class="role-card collapsed">
                     <div class="role-header">
                         <h5 class="role-title">Amazon, AGS5 — Learning Trainer</h5>
                         <p class="role-period">Oct 2021 - May 2023</p>
                     </div>
-                    <ul>
-                        <li>Developed daily and weekly metrics reports that enhanced safety and accountability</li>
-                        <li>Increased TPH by 20% during peak season through effective onboarding and training initiatives</li>
-                        <li>Developed and executed a KPI-driven incentive program, improving overall productivity and engagement metrics</li>
-                        <li>Created a sub-regional logistics report that increased carrier accountability and improved tracking accuracy by 85.09%</li>
-                        <li>Reduced site-level potential and actual defects by 79.43% by collaborating with various teams to improve process transparency</li>
-                        <li>Worked closely with other operational and support departments to achieve both site and network benchmarks</li>
-                    </ul>
+                    <div class="role-content">
+                        <ul>
+                            <li>Developed daily and weekly metrics reports that enhanced safety and accountability</li>
+                            <li>Increased TPH by 20% during peak season through effective onboarding and training initiatives</li>
+                            <li>Developed and executed a KPI-driven incentive program, improving overall productivity and engagement metrics</li>
+                            <li>Created a sub-regional logistics report that increased carrier accountability and improved tracking accuracy by 85.09%</li>
+                            <li>Reduced site-level potential and actual defects by 79.43% by collaborating with various teams to improve process transparency</li>
+                            <li>Worked closely with other operational and support departments to achieve both site and network benchmarks</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <h4>Education</h4>
@@ -140,6 +146,19 @@
     
     <script>
         document.getElementById('current-date').textContent = new Date().toLocaleDateString();
+        
+        // Role card toggle functionality
+        document.querySelectorAll('.role-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('collapsed');
+            });
+        });
+        
+        // Logo click color cycling
+        document.querySelector('.zv-logo').addEventListener('click', () => {
+            document.querySelector('.orbiter-cube-container').classList.toggle('color-cycle');
+        });
+        
         console.log('Resume page loaded successfully');
     </script>
 </body>
