@@ -25,6 +25,7 @@ header {
     max-width: 800px;
     box-shadow: 0 8px 32px rgba(30, 58, 95, 0.4);
     position: relative;
+    overflow: hidden;
 }
 
 nav {
@@ -71,6 +72,7 @@ nav:hover::before {
 nav a {
     color: #4ecdc4;
     text-decoration: none;
+    position: center;
     font-style: italic;
     font-weight: 600;
     padding: 8px 12px;
@@ -143,12 +145,49 @@ main p em {
     padding: 20px;
     margin: 15px 0;
     box-shadow: 0 4px 15px rgba(78, 205, 196, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.role-card.collapsed {
+    padding: 15px 20px;
+}
+
+.role-card.collapsed .role-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    margin-top: 0;
+}
+
+.role-content {
+    max-height: 1000px;
+    overflow: hidden;
+    opacity: 1;
+    margin-top: 15px;
+    transition: all 0.4s ease;
 }
 
 .role-header {
     border-bottom: 1px solid #4ecdc4;
     padding-bottom: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.role-header::after {
+    content: '▼';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4ecdc4;
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.role-card.collapsed .role-header::after {
+    transform: translateY(-50%) rotate(-90deg);
 }
 
 .role-title {
@@ -455,15 +494,16 @@ form input[type="submit"]:hover {
 
 /* X-Orbiters */
 .orbiter-cube-container {
-    width: 132px;
-    height: 132px;
+    width: 200px;
+    height: 200px;
     position: absolute;
     display: flex;
-    right: 2%;
+    right: -5%;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) scale(1.7);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 
 .orbiter-cube-container:hover .orbiter-group {
@@ -489,7 +529,7 @@ form input[type="submit"]:hover {
     height: var(--default-height);
     transform-origin: center center;
     opacity: 1;
-    transition: width 0.8s ease, height 0.8s ease;
+    transition: all 0.5s ease;
 }
 
 .orbiter-cube-container:hover .orbiter-group {
@@ -516,7 +556,7 @@ form input[type="submit"]:hover {
     opacity: var(--opacity);
     transform: translate(var(--x), var(--y)) rotate(var(--rotation));
     animation: revolve 5s linear infinite;
-    transition: transform 0.75s ease, background-color 0.3s ease;
+    transition: transform, background-color 0.3s ease;
 }
 
 @keyframes fadeIn {
@@ -641,7 +681,25 @@ form input[type="submit"]:hover {
                  0 0 10px rgba(255, 255, 255, 0.3);
     animation: fadeInCube 2s ease-out forwards;
     transition: transform 0.8s ease, text-shadow 0.3s ease;
+    cursor: pointer;
 }
+
+.color-cycle .airwolf-header-orbiter {
+    animation: revolve 5s linear infinite, colorCycle 3s ease-in-out infinite !important;
+    box-shadow: none !important;
+}
+
+@keyframes colorCycle {
+    0% { background-color: #ff0000; }
+    16% { background-color: #ff8000; }
+    33% { background-color: #ffff00; }
+    50% { background-color: #00ff00; }
+    66% { background-color: #0080ff; }
+    83% { background-color: #8000ff; }
+    100% { background-color: #ff0000; }
+}
+
+
 
 @keyframes fadeInCube {
     0% { opacity: 0; }
