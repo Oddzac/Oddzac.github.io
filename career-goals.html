@@ -1,134 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Career Goals - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vexus - Career Vision</title>
+    <link rel="stylesheet" href="vexus-style.css">
 </head>
 <body>
-    <header>
-        <h1>Career Goals</h1>
-        <div class="orbiter-cube-container">
-            <div class="zv-logo">ZV</div>
-            <div class="orbiter-group one">
-                <div class="airwolf-header-orbiter tail zero"></div>
-                <div class="airwolf-header-orbiter tail one"></div>
-                <div class="airwolf-header-orbiter tail two"></div>
-                <div class="airwolf-header-orbiter tail three"></div>
-            </div>
-            <div class="orbiter-group two">
-                <div class="airwolf-header-orbiter tail zero"></div>
-                <div class="airwolf-header-orbiter tail one"></div>
-                <div class="airwolf-header-orbiter tail two"></div>
-                <div class="airwolf-header-orbiter tail three"></div>
-            </div>
-            <div class="orbiter-group three">
-                <div class="airwolf-header-orbiter tail zero"></div>
-                <div class="airwolf-header-orbiter tail one"></div>
-                <div class="airwolf-header-orbiter tail two"></div>
-                <div class="airwolf-header-orbiter tail three"></div>
-            </div>
-            <div class="orbiter-group four">
-                <div class="airwolf-header-orbiter tail zero"></div>
-                <div class="airwolf-header-orbiter tail one"></div>
-                <div class="airwolf-header-orbiter tail two"></div>
-                <div class="airwolf-header-orbiter tail three"></div>
-            </div>
+    <div class="cyberpunk-container">
+        <!-- Vexus Header with Interactive Effect -->
+        <div class="vexus-header">
+            <div class="text-reveal-zone"></div>
+            <div class="brand-text">VEXUS</div>
+            <div class="orbiter sprite-1"></div>
+            <div class="orbiter sprite-2"></div>
+            <div class="orbiter sprite-3"></div>
         </div>
-    </header>
-    
-    <nav>
-        <a href="resume.html">Resume</a>
-        <a href="cover-letter.html">Cover Letter</a>
-        <a href="career-goals.html">Career Goals</a>
-    </nav>
-    
-    <main>
-        <h2>My Professional Vision</h2>
-        <hr>
-        <p>I aim to leverage my <em>analytical skills and programming expertise</em> to drive data-driven solutions that optimize processes and deliver measurable business impact across enterprise-level systems.</p>
-        <br>
-        <p>Through <strong>Vexus Ventures</strong>, I offer independent tech solutions architecture services, specializing in custom automation tools, process optimization systems, and data analytics platforms. My proven track record includes developing network-level applications that have generated <mark>millions in annual savings</mark> and significant efficiency improvements.</p>
-        <br>
-        <p>Available for consulting on data analysis projects, Python automation development, and enterprise process optimization initiatives.</p>
-        <br>
-        <div class="media-container">
-            <img src="r-Vexus.png" alt="Career Goals Visualization">
-            
-            <audio controls>
-                <source src="r-Recording.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-            
-            <video controls width="400" height="300">
-                <source src="r-Groceries.mp4" type="video/mp4">
-                Your browser does not support the video element.
-            </video>
-        </div>
-        
-        <form action="https://wp.zybooks.com/form-viewer.php" method="post">
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="company">Company Name:</label>
-                <input type="text" id="company" name="company">
-            </div>
-            
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="phone">Phone:</label>
-                <input type="tel" id="phone" name="phone">
-            </div>
-            
-            <div class="form-group">
-                <label for="contactMethod">Preferred Contact Method:</label>
-                <select id="contactMethod" name="contactMethod">
-                    <option value="phone">Phone</option>
-                    <option value="email">Email</option>
-                    <option value="text">Text</option>
-                </select>
-            </div>
-            
-            <div class="form-group full-width">
-                <div class="radio-line">
-                    <span>Best Contact Time:</span>
-                    <div class="radio-option">
-                        <input type="radio" id="am" name="contactTime" value="am">
-                        <label for="am">AM</label>
+
+        <!-- Navigation -->
+        <nav class="cyber-nav">
+            <a href="resume.html" class="nav-link">RESUME</a>
+            <a href="cover-letter.html" class="nav-link">COVER</a>
+            <a href="career-goals.html" class="nav-link active">VISION</a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="cyber-main">
+            <section class="vision-section">
+                <h1 class="cyber-title">PROFESSIONAL VISION</h1>
+                <div class="content-grid">
+                    <div class="vision-card">
+                        <h2>CORE MISSION</h2>
+                        <p>Leveraging <span class="highlight-cyan">analytical expertise</span> and <span class="highlight-magenta">programming mastery</span> to architect data-driven solutions that optimize enterprise systems and deliver measurable business impact.</p>
                     </div>
-                    <div class="radio-option">
-                        <input type="radio" id="pm" name="contactTime" value="pm">
-                        <label for="pm">PM</label>
+
+                    <div class="vision-card">
+                        <h2>VEXUS VENTURES</h2>
+                        <p>Independent tech solutions architecture specializing in custom automation, process optimization, and data analytics platforms. Proven track record: <span class="highlight-cyan">millions in annual savings</span> through network-level applications.</p>
                     </div>
-                    <div class="radio-option">
-                        <input type="radio" id="anytime" name="contactTime" value="anytime">
-                        <label for="anytime">Anytime</label>
+
+                    <div class="vision-card">
+                        <h2>SERVICES AVAILABLE</h2>
+                        <p>Consulting on data analysis projects, Python automation development, and enterprise process optimization initiatives.</p>
                     </div>
                 </div>
-            </div>
-            
-            <div class="form-group full-width">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="3"></textarea>
-            </div>
-            
-            <input type="submit" value="Submit">
-        </form>
-    </main>
-    
-    <footer>
-        <p>&copy; 2024 Zac Vaughan Portfolio</p>
-    </footer>
+            </section>
+
+            <!-- Contact Form -->
+            <section class="contact-section">
+                <h2 class="section-title">INITIATE CONTACT</h2>
+                <form class="cyber-form" action="https://wp.zybooks.com/form-viewer.php" method="post">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" id="firstName" name="firstName" required>
+                            <label for="firstName">FIRST NAME</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="lastName" name="lastName" required>
+                            <label for="lastName">LAST NAME</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="input-group">
+                            <input type="text" id="company" name="company">
+                            <label for="company">COMPANY</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">EMAIL</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <select id="contactMethod" name="contactMethod">
+                            <option value="email">EMAIL</option>
+                            <option value="phone">PHONE</option>
+                            <option value="text">TEXT</option>
+                        </select>
+                        <label for="contactMethod">CONTACT METHOD</label>
+                    </div>
+
+                    <div class="radio-group">
+                        <span class="radio-label">OPTIMAL CONTACT TIME:</span>
+                        <div class="radio-options">
+                            <label class="radio-option">
+                                <input type="radio" name="contactTime" value="am">
+                                <span>AM</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="contactTime" value="pm">
+                                <span>PM</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="contactTime" value="anytime">
+                                <span>ANYTIME</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <textarea id="message" name="message" rows="4"></textarea>
+                        <label for="message">MESSAGE</label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">TRANSMIT</button>
+                </form>
+            </section>
+        </main>
+
+        <footer class="cyber-footer">
+            <p>&copy; 2024 VEXUS VENTURES</p>
+        </footer>
+    </div>
+
+    <script src="vexus-effects.js"></script>
 </body>
 </html>

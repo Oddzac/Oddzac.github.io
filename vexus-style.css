@@ -1,0 +1,366 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0a0015, #1a0033, #0f0025);
+    min-height: 100vh;
+    font-family: 'Courier New', monospace;
+    color: #00ffff;
+    overflow-x: hidden;
+}
+
+.cyberpunk-container {
+    max-width: 80vw;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Vexus Header */
+.vexus-header {
+    position: relative;
+    height: 120px;
+    margin: 2rem 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0015;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.text-reveal-zone {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: none;
+    z-index: 1;
+}
+
+.brand-text {
+    font-size: 4rem;
+    font-weight: bold;
+    color: transparent;
+    z-index: 2;
+    position: relative;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: 3px;
+}
+
+.orbiter {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00ffff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+}
+
+/* Navigation */
+.cyber-nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0 0 2rem 0;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    border-radius: 0 0 8px 8px;
+    position: relative;
+    top: -1px;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    overflow: hidden;
+}
+
+.nav-link {
+    color: #00ffff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    position: relative;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+
+}
+
+.nav-link::before,
+.nav-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff00ff;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.nav-link::before {
+    content: '[';
+    left: -15px;
+}
+
+.nav-link::after {
+    content: ']';
+    right: -15px;
+}
+
+.nav-link:hover::before,
+.nav-link:hover::after,
+.nav-link.active::before,
+.nav-link.active::after {
+    opacity: 1;
+    animation: bracket-glow 0.5s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(255, 0, 255, 0.4);
+    animation: glitch 0.1s ease-in-out;
+}
+
+
+
+@keyframes bracket-glow {
+    0% { text-shadow: none; }
+    50% { text-shadow: 0 0 10px #ff00ff; }
+    100% { text-shadow: 0 0 5px #ff00ff; }
+}
+
+@keyframes glitch {
+    0% { transform: translateX(0); }
+    20% { transform: translateX(-2px); }
+    40% { transform: translateX(2px); }
+    60% { transform: translateX(-1px); }
+    80% { transform: translateX(1px); }
+    100% { transform: translateX(0); }
+}
+
+/* Main Content */
+.cyber-main {
+    margin: 3rem 0;
+}
+
+.vision-section {
+    margin-bottom: 4rem;
+}
+
+.cyber-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #00ffff;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+    letter-spacing: 2px;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.vision-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.vision-card:hover {
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+.vision-card h2 {
+    color: #ff00ff;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.vision-card p {
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+.highlight-cyan {
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+.highlight-magenta {
+    color: #ff00ff;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+}
+
+/* Contact Form */
+.contact-section {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 3rem;
+    margin: 3rem 0;
+}
+
+.section-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ff00ff;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+    letter-spacing: 1px;
+}
+
+.cyber-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+    color: #00ffff;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.3);
+}
+
+.input-group label {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background: #0a0015;
+    padding: 0 5px;
+    color: #ff00ff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.radio-group {
+    margin: 2rem 0;
+}
+
+.radio-label {
+    display: block;
+    color: #ff00ff;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.radio-options {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+    margin-right: 0.5rem;
+    accent-color: #00ffff;
+}
+
+.radio-option span {
+    color: #cccccc;
+    transition: color 0.3s ease;
+}
+
+.radio-option:hover span {
+    color: #00ffff;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+    border: none;
+    border-radius: 4px;
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.4);
+}
+
+/* Footer */
+.cyber-footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid rgba(0, 255, 255, 0.3);
+    margin-top: 3rem;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .brand-text {
+        font-size: 2.5rem;
+    }
+    
+    .cyber-title {
+        font-size: 2rem;
+    }
+    
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .radio-options {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

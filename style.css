@@ -706,3 +706,96 @@ form input[type="submit"]:hover {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+/* Text Reveal Header Component */
+.text-reveal-header {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+}
+
+.text-grid-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0015;
+    cursor: crosshair;
+}
+
+.hidden-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    font-weight: bold;
+    color: #00ffff;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 10;
+    white-space: nowrap;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 3px;
+}
+
+.orbiter-sprite {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #00ffff, #ff00ff);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    pointer-events: none;
+    z-index: 5;
+}
+
+.orbiter-sprite.sprite-1 {
+    background: radial-gradient(circle, #00ffff, transparent);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
+}
+
+.orbiter-sprite.sprite-2 {
+    background: radial-gradient(circle, #ff00ff, transparent);
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.9);
+}
+
+.orbiter-sprite.sprite-3 {
+    background: radial-gradient(circle, #00ff88, transparent);
+    box-shadow: 0 0 12px rgba(0, 255, 136, 0.9);
+}
+
+/* Text Reveal Header Responsive */
+@media (max-width: 768px) {
+    .text-reveal-header {
+        height: 200px;
+    }
+    
+    .hidden-text {
+        font-size: 2.5rem;
+    }
+    
+    .orbiter-sprite {
+        width: 6px;
+        height: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-reveal-header {
+        height: 150px;
+    }
+    
+    .hidden-text {
+        font-size: 1.8rem;
+    }
+    
+    .orbiter-sprite {
+        width: 4px;
+        height: 4px;
+    }
+}
